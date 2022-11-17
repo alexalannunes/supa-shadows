@@ -10,7 +10,6 @@ export function Component({ boxShadow, box }: { boxShadow: string; box: any }) {
       alignItems="center"
       justifyContent="center"
       bg={box.color}
-      _dark={{ bg: "gray.800" }}
     >
       <Box
         w={box.width + "rem"}
