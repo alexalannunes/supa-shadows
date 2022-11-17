@@ -1,0 +1,13 @@
+.custom-scrollbar--color-mode::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar--color-mode::-webkit-scrollbar-track {
+  width: 6px;
+}
+.custom-scrollbar--color-mode::-webkit-scrollbar-thumb {
+  background-color: var(--chakra-colors-gray-300);
+  border-radius: 24px;
+}
+[data-theme="dark"] .custom-scrollbar--color-mode::-webkit-scrollbar-thumb {
+  background-color: var(--chakra-colors-gray-500);
+}
