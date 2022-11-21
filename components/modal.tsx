@@ -35,6 +35,7 @@ export function ModalShadows({ isOpen, onClose, boxShadow }: Props) {
           <ModalCloseButton />
           <ModalBody>
             <Textarea
+              readOnly
               rows={3}
               ref={ref}
               defaultValue={boxShadow}
