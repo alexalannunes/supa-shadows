@@ -24,6 +24,7 @@ export function Header({ onOpen }: Props) {
       borderBottom="1px"
       borderBottomColor="gray.300"
       _dark={{ bg: "gray.700", borderBottomColor: "gray.600" }}
+      className="supa-shadows__header"
     >
       <Flex alignItems="center" gap={2}>
         <svg
