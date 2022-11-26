@@ -18,11 +18,56 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { memo } from "react";
-interface Props {
-  box: any;
-  setBox: (box: any) => void;
+import { useAtom } from "jotai";
+import {
+  backgroundAtom,
+  borderColorAtom,
+  borderRadiusAtom,
+  colorAtom,
+  heightAtom,
+  widthAtom,
+} from "../pages";
+
+function CanvasColorField() {
+  const [color, setColor] = useAtom(colorAtom);
+
+  return (
+    <FormControl>
+      <FormLabel fontWeight="bold">Canvas color</FormLabel>
+      <Input
+        type="text"
+        value={color}
+        onChange={(e) => setColor(e.target.value)}
+        maxLength={7}
+        fontFamily="monospace"
+      />
+    </FormControl>
+  );
 }
-export function Component({ box, setBox }: Props) {
+
+function BackgroundField() {
+  const [background, setBackground] = useAtom(backgroundAtom);
+
+  return (
+    <FormControl>
+      <FormLabel fontWeight="bold">Background color</FormLabel>
+      <Input
+        type="text"
+        value={background}
+        onChange={(e) => setBackground(e.target.value)}
+        maxLength={7}
+        fontFamily="monospace"
+      />
+    </FormControl>
+  );
+}
+
+export function Component() {
+  const [width, setWidth] = useAtom(widthAtom);
+  const [height, setHeight] = useAtom(heightAtom);
+  const [borderColor, setBorderColor] = useAtom(borderColorAtom);
+  const [borderRadius, setBorderRadius] = useAtom(borderRadiusAtom);
+
   return (
     <Box
       as="section"
@@ -40,38 +85,14 @@ export function Component({ box, setBox }: Props) {
       </Flex>
 
       <VStack spacing={5} p={4}>
-        <FormControl>
-          <FormLabel fontWeight="bold">Canvas color</FormLabel>
-          <Input
-            type="text"
-            value={box.color}
-            onChange={(e) =>
-              setBox((prev: any) => ({ ...prev, color: e.target.value }))
-            }
-            maxLength={7}
-            fontFamily="monospace"
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel fontWeight="bold">Background color</FormLabel>
-          <Input
-            type="text"
-            value={box.background}
-            onChange={(e) =>
-              setBox((prev: any) => ({ ...prev, background: e.target.value }))
-            }
-            maxLength={7}
-            fontFamily="monospace"
-          />
-        </FormControl>
+        <CanvasColorField />
+        <BackgroundField />
         <FormControl>
           <FormLabel fontWeight="bold">Border color</FormLabel>
           <Input
             type="text"
-            value={box.borderColor}
-            onChange={(e) =>
-              setBox((prev: any) => ({ ...prev, borderColor: e.target.value }))
-            }
+            value={borderColor}
+            onChange={(e) => setBorderColor(e.target.value)}
             maxLength={7}
             fontFamily="monospace"
           />
@@ -87,10 +108,8 @@ export function Component({ box, setBox }: Props) {
                 min={0}
                 aria-label="slider-ex-1"
                 colorScheme="teal"
-                value={box.borderRadius}
-                onChange={(e) =>
-                  setBox((prev: any) => ({ ...prev, borderRadius: e }))
-                }
+                value={borderRadius}
+                onChange={(value) => setBorderRadius(value)}
               >
                 <SliderTrack>
                   <SliderFilledTrack bg="transparent" />
@@ -104,14 +123,9 @@ export function Component({ box, setBox }: Props) {
                 max={50}
                 min={10}
                 step={1}
-                value={box.borderRadius}
+                value={borderRadius}
                 defaultValue={3}
-                onChange={(e) =>
-                  setBox((prev: any) => ({
-                    ...prev,
-                    borderRadius: Number(e),
-                  }))
-                }
+                onChange={(e) => setBorderRadius(Number(e))}
               >
                 <NumberInputField />
                 <NumberInputStepper>
@@ -133,8 +147,8 @@ export function Component({ box, setBox }: Props) {
                 step={1}
                 aria-label="slider-ex-1"
                 colorScheme="teal"
-                value={box.width}
-                onChange={(e) => setBox((prev: any) => ({ ...prev, width: e }))}
+                value={width}
+                onChange={(value) => setWidth(value)}
               >
                 <SliderTrack>
                   <SliderFilledTrack bg="transparent" />
@@ -148,13 +162,8 @@ export function Component({ box, setBox }: Props) {
                 max={50}
                 min={10}
                 step={1}
-                value={box.width}
-                onChange={(e) =>
-                  setBox((prev: any) => ({
-                    ...prev,
-                    width: Number(e),
-                  }))
-                }
+                value={width}
+                onChange={(e) => setWidth(Number(e))}
               >
                 <NumberInputField />
                 <NumberInputStepper>
@@ -177,10 +186,8 @@ export function Component({ box, setBox }: Props) {
                 step={1}
                 aria-label="slider-ex-1"
                 colorScheme="teal"
-                value={box.height}
-                onChange={(e) =>
-                  setBox((prev: any) => ({ ...prev, height: e }))
-                }
+                value={height}
+                onChange={(value) => setHeight(value)}
               >
                 <SliderTrack>
                   <SliderFilledTrack bg="transparent" />
@@ -194,14 +201,9 @@ export function Component({ box, setBox }: Props) {
                 max={50}
                 min={10}
                 step={1}
-                value={box.height}
+                value={height}
                 defaultValue={3}
-                onChange={(e) =>
-                  setBox((prev: any) => ({
-                    ...prev,
-                    height: Number(e),
-                  }))
-                }
+                onChange={(value) => setHeight(Number(value))}
               >
                 <NumberInputField />
                 <NumberInputStepper>
