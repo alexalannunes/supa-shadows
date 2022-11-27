@@ -7,6 +7,7 @@ function BackdropLoading() {
   const loadingRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // refact this code :)
+    // https://react-spring.dev/basics#basics
     setTimeout(() => {
       loadingRef.current?.classList.add("fade-out");
       setTimeout(() => {
