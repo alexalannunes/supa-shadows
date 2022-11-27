@@ -25,7 +25,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { memo, useMemo } from "react";
-import { Shadow } from "./shadow-control";
+import { Shadow } from "../types";
 
 interface Props {
   shadows: Shadow[];
