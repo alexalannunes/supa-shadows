@@ -9,7 +9,12 @@ import {
   heightAtom,
   widthAtom,
 } from "../pages";
-export function Component({ boxShadow, box }: { boxShadow: string; box: any }) {
+
+interface Props {
+  boxShadow: string;
+}
+
+export function Component({ boxShadow }: Props) {
   const color = useAtomValue(colorAtom);
   const background = useAtomValue(backgroundAtom);
   const width = useAtomValue(widthAtom);
