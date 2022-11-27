@@ -7,6 +7,7 @@ A box shadow generator :tada:
 * :sparkles: Next.js
 * :heavy_check_mark: TypeScript
 * :hammer: Chakra-UI
+* :wrench: Jotai
 
 ___
 
