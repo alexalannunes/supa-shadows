@@ -86,7 +86,7 @@ const Home: NextPage = () => {
             onSpread={handleSpread}
             onColor={handleColor}
           />
-          <ShadowPreview box={box} boxShadow={boxShadow} />
+          <ShadowPreview boxShadow={boxShadow} />
           <ShadowProperties />
         </Flex>
       </Flex>
