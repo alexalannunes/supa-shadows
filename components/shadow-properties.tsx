@@ -62,12 +62,163 @@ function BackgroundField() {
   );
 }
 
-export function Component() {
-  const [width, setWidth] = useAtom(widthAtom);
-  const [height, setHeight] = useAtom(heightAtom);
+function BorderColor() {
   const [borderColor, setBorderColor] = useAtom(borderColorAtom);
+
+  return (
+    <FormControl>
+      <FormLabel fontWeight="bold">Border color</FormLabel>
+      <Input
+        type="text"
+        value={borderColor}
+        onChange={(e) => setBorderColor(e.target.value)}
+        maxLength={7}
+        fontFamily="monospace"
+      />
+    </FormControl>
+  );
+}
+
+function BorderRadius() {
   const [borderRadius, setBorderRadius] = useAtom(borderRadiusAtom);
 
+  return (
+    <FormControl>
+      <FormLabel fontWeight="bold">Border radius</FormLabel>
+      <Flex alignItems="center" justifyContent="space-between">
+        <Flex flex={1} alignItems="center" pr={10}>
+          <Slider
+            pr={8}
+            max={20}
+            step={1}
+            min={0}
+            aria-label="slider-ex-1"
+            colorScheme="teal"
+            value={borderRadius}
+            onChange={(value) => setBorderRadius(value)}
+          >
+            <SliderTrack>
+              <SliderFilledTrack bg="transparent" />
+            </SliderTrack>
+            <SliderThumb bgColor="teal.400" />
+          </Slider>
+        </Flex>
+        <Flex alignItems="center" gap={2}>
+          <NumberInput
+            w={20}
+            max={50}
+            min={10}
+            step={1}
+            value={borderRadius}
+            defaultValue={3}
+            onChange={(e) => setBorderRadius(Number(e))}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <Text>rem</Text>
+        </Flex>
+      </Flex>
+    </FormControl>
+  );
+}
+
+function Width() {
+  const [width, setWidth] = useAtom(widthAtom);
+
+  return (
+    <FormControl>
+      <FormLabel fontWeight="bold">Width</FormLabel>
+      <Flex alignItems="center" justifyContent="space-between">
+        <Flex flex={1} alignItems="center" pr={10}>
+          <Slider
+            max={50}
+            min={10}
+            step={1}
+            aria-label="slider-ex-1"
+            colorScheme="teal"
+            value={width}
+            onChange={(value) => setWidth(value)}
+          >
+            <SliderTrack>
+              <SliderFilledTrack bg="transparent" />
+            </SliderTrack>
+            <SliderThumb bgColor="teal.400" />
+          </Slider>
+        </Flex>
+        <Flex alignItems="center" gap={2}>
+          <NumberInput
+            w={20}
+            max={50}
+            min={10}
+            step={1}
+            value={width}
+            onChange={(e) => setWidth(Number(e))}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <Text>rem</Text>
+        </Flex>
+      </Flex>
+    </FormControl>
+  );
+}
+
+function Height() {
+  const [height, setHeight] = useAtom(heightAtom);
+
+  return (
+    <FormControl>
+      <FormLabel fontWeight="bold">Height</FormLabel>
+      <Flex alignItems="center" justifyContent="space-between">
+        <Flex flex={1} alignItems="center" pr={10}>
+          <Slider
+            pr={8}
+            max={50}
+            min={10}
+            step={1}
+            aria-label="slider-ex-1"
+            colorScheme="teal"
+            value={height}
+            onChange={(value) => setHeight(value)}
+          >
+            <SliderTrack>
+              <SliderFilledTrack bg="transparent" />
+            </SliderTrack>
+            <SliderThumb bgColor="teal.400" />
+          </Slider>
+        </Flex>
+        <Flex alignItems="center" gap={2}>
+          <NumberInput
+            w={20}
+            max={50}
+            min={10}
+            step={1}
+            value={height}
+            defaultValue={3}
+            onChange={(value) => setHeight(Number(value))}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <Text>rem</Text>
+        </Flex>
+      </Flex>
+    </FormControl>
+  );
+}
+
+export function Component() {
   return (
     <Box
       as="section"
@@ -87,134 +238,10 @@ export function Component() {
       <VStack spacing={5} p={4}>
         <CanvasColorField />
         <BackgroundField />
-        <FormControl>
-          <FormLabel fontWeight="bold">Border color</FormLabel>
-          <Input
-            type="text"
-            value={borderColor}
-            onChange={(e) => setBorderColor(e.target.value)}
-            maxLength={7}
-            fontFamily="monospace"
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel fontWeight="bold">Border radius</FormLabel>
-          <Flex alignItems="center" justifyContent="space-between">
-            <Flex flex={1} alignItems="center" pr={10}>
-              <Slider
-                pr={8}
-                max={20}
-                step={1}
-                min={0}
-                aria-label="slider-ex-1"
-                colorScheme="teal"
-                value={borderRadius}
-                onChange={(value) => setBorderRadius(value)}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack bg="transparent" />
-                </SliderTrack>
-                <SliderThumb bgColor="teal.400" />
-              </Slider>
-            </Flex>
-            <Flex alignItems="center" gap={2}>
-              <NumberInput
-                w={20}
-                max={50}
-                min={10}
-                step={1}
-                value={borderRadius}
-                defaultValue={3}
-                onChange={(e) => setBorderRadius(Number(e))}
-              >
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <Text>rem</Text>
-            </Flex>
-          </Flex>
-        </FormControl>
-        <FormControl>
-          <FormLabel fontWeight="bold">Width</FormLabel>
-          <Flex alignItems="center" justifyContent="space-between">
-            <Flex flex={1} alignItems="center" pr={10}>
-              <Slider
-                max={50}
-                min={10}
-                step={1}
-                aria-label="slider-ex-1"
-                colorScheme="teal"
-                value={width}
-                onChange={(value) => setWidth(value)}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack bg="transparent" />
-                </SliderTrack>
-                <SliderThumb bgColor="teal.400" />
-              </Slider>
-            </Flex>
-            <Flex alignItems="center" gap={2}>
-              <NumberInput
-                w={20}
-                max={50}
-                min={10}
-                step={1}
-                value={width}
-                onChange={(e) => setWidth(Number(e))}
-              >
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <Text>rem</Text>
-            </Flex>
-          </Flex>
-        </FormControl>
-        <FormControl>
-          <FormLabel fontWeight="bold">Height</FormLabel>
-          <Flex alignItems="center" justifyContent="space-between">
-            <Flex flex={1} alignItems="center" pr={10}>
-              <Slider
-                pr={8}
-                max={50}
-                min={10}
-                step={1}
-                aria-label="slider-ex-1"
-                colorScheme="teal"
-                value={height}
-                onChange={(value) => setHeight(value)}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack bg="transparent" />
-                </SliderTrack>
-                <SliderThumb bgColor="teal.400" />
-              </Slider>
-            </Flex>
-            <Flex alignItems="center" gap={2}>
-              <NumberInput
-                w={20}
-                max={50}
-                min={10}
-                step={1}
-                value={height}
-                defaultValue={3}
-                onChange={(value) => setHeight(Number(value))}
-              >
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-              <Text>rem</Text>
-            </Flex>
-          </Flex>
-        </FormControl>
+        <BorderColor />
+        <BorderRadius />
+        <Width />
+        <Height />
       </VStack>
     </Box>
   );
