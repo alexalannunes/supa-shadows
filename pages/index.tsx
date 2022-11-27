@@ -5,11 +5,13 @@ import { useMemo, useState } from "react";
 import { v4 } from "uuid";
 import { Header } from "../components/header";
 import { ModalShadows } from "../components/modal";
-import { Shadow, ShadowControl } from "../components/shadow-control";
+import { ShadowControl } from "../components/shadow-control";
 import { ShadowPreview } from "../components/shadow-preview";
 import { ShadowProperties } from "../components/shadow-properties";
 import { useShadows } from "../hooks/use-shadows";
 import { atom } from "jotai";
+import { buildShadow } from "../utils/build-shadow";
+import { Shadow } from "../types";
 export const shadowBase = {
   id: v4(),
   x: 0,
@@ -20,9 +22,6 @@ export const shadowBase = {
   active: true,
   color: "rgba(0,0,0,0.1)",
 };
-
-const buildShadow = ({ inset, x, y, blur, spread, color }: Shadow) =>
-  `${inset ? "inset" : ""} ${x}px ${y}px ${blur}px ${spread}px ${color}`;
 
 export const colorAtom = atom("#EDF2F7");
 export const backgroundAtom = atom("white");

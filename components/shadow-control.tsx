@@ -1,17 +1,7 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { memo } from "react";
+import { Shadow } from "../types/shadow";
 import { AccordionShadows } from "./accordion";
-
-export type Shadow = {
-  id: string;
-  x: number;
-  y: number;
-  blur: number;
-  spread: number;
-  inset: boolean;
-  active: boolean;
-  color: string;
-};
 
 interface Props {
   shadows: Shadow[];
