@@ -17,3 +17,8 @@
 [data-theme="dark"] .supa-shadows__header svg {
   fill: var(--chakra-colors-gray-100);
 }
+.fade-out {
+  transition: all 0.3s linear;
+  opacity: 0;
+  visibility: hidden;
+}
