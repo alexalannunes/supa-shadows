@@ -10,13 +10,16 @@ import {
   ModalOverlay,
   Textarea,
 } from "@chakra-ui/react";
+import { useAtomValue } from "jotai";
 import { useRef } from "react";
+import { shadowStringAtom } from "../pages";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  boxShadow: string;
 }
-export function ModalShadows({ isOpen, onClose, boxShadow }: Props) {
+export function ModalShadows({ isOpen, onClose }: Props) {
+  const shadowString = useAtomValue(shadowStringAtom);
+
   const ref = useRef<HTMLTextAreaElement>(null);
 
   const handleCopy = () => {
@@ -38,7 +41,7 @@ export function ModalShadows({ isOpen, onClose, boxShadow }: Props) {
               readOnly
               rows={3}
               ref={ref}
-              defaultValue={boxShadow}
+              defaultValue={shadowString}
               fontFamily="monospace"
             />
           </ModalBody>

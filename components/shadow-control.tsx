@@ -1,33 +1,23 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { memo } from "react";
+import { useShadows } from "../hooks/use-shadows";
 import { Shadow } from "../types/shadow";
 import { AccordionShadows } from "./accordion";
 
-interface Props {
-  shadows: Shadow[];
-  onAddShadow: () => void;
-  onToggleActive: (id: string) => void;
-  onToggleInset: (id: string) => void;
-  onRemove: (id: string) => void;
-  onHorizontalOffset: (id: string, value: number) => void;
-  onVerticalOffset: (id: string, value: number) => void;
-  onBlur: (id: string, value: number) => void;
-  onSpread: (id: string, value: number) => void;
-  onColor: (id: string, value: string) => void;
-}
+function Component() {
+  const {
+    shadows,
+    handleAddSahdow,
+    handleToggleActive,
+    handleToggleInset,
+    handleRemove,
+    handleHorizontalOffset,
+    handleVerticalOffset,
+    handleBlur,
+    handleSpread,
+    handleColor,
+  } = useShadows();
 
-function Component({
-  shadows,
-  onAddShadow,
-  onToggleActive,
-  onToggleInset,
-  onRemove,
-  onHorizontalOffset,
-  onVerticalOffset,
-  onBlur,
-  onSpread,
-  onColor,
-}: Props) {
   return (
     <Box
       as="section"
@@ -41,21 +31,21 @@ function Component({
     >
       <Flex justifyContent="space-between" alignItems="center" p={4}>
         <Heading fontSize="md">Customize Shadows</Heading>
-        <Button colorScheme="teal" size="sm" onClick={onAddShadow}>
+        <Button colorScheme="teal" size="sm" onClick={handleAddSahdow}>
           Add shadow
         </Button>
       </Flex>
       <Box>
         <AccordionShadows
           shadows={shadows}
-          onToggleActive={onToggleActive}
-          onToggleInset={onToggleInset}
-          onRemove={onRemove}
-          onHorizontalOffset={onHorizontalOffset}
-          onVerticalOffset={onVerticalOffset}
-          onBlur={onBlur}
-          onSpread={onSpread}
-          onColor={onColor}
+          onToggleActive={handleToggleActive}
+          onToggleInset={handleToggleInset}
+          onRemove={handleRemove}
+          onHorizontalOffset={handleHorizontalOffset}
+          onVerticalOffset={handleVerticalOffset}
+          onBlur={handleBlur}
+          onSpread={handleSpread}
+          onColor={handleColor}
         />
       </Box>
     </Box>

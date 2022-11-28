@@ -7,20 +7,18 @@ import {
   borderRadiusAtom,
   colorAtom,
   heightAtom,
+  shadowStringAtom,
   widthAtom,
 } from "../pages";
 
-interface Props {
-  boxShadow: string;
-}
-
-export function Component({ boxShadow }: Props) {
+export function Component() {
   const color = useAtomValue(colorAtom);
   const background = useAtomValue(backgroundAtom);
   const width = useAtomValue(widthAtom);
   const height = useAtomValue(heightAtom);
   const borderColor = useAtomValue(borderColorAtom);
   const borderRadius = useAtomValue(borderRadiusAtom);
+  const shadowString = useAtomValue(shadowStringAtom);
   return (
     <Flex
       as="main"
@@ -37,7 +35,7 @@ export function Component({ boxShadow }: Props) {
         bg={background}
         border="1px"
         borderColor={borderColor}
-        boxShadow={boxShadow}
+        boxShadow={shadowString}
       />
     </Flex>
   );
