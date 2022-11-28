@@ -61,6 +61,7 @@ function AccordionShadowsCP({
             {({ isExpanded }) => (
               <>
                 <AccordionButton
+                  data-testid={`accordion-item-${index}`}
                   py={3}
                   sx={{
                     boxShadow: isExpanded
@@ -84,7 +85,7 @@ function AccordionShadowsCP({
                       <Switch
                         colorScheme="teal"
                         isChecked={item.active}
-                        onChange={(e) => onToggleActive(item.id)}
+                        onChange={() => onToggleActive(item.id)}
                       />
                     </FormControl>
                     <FormControl display="flex" alignItems="center">
@@ -92,7 +93,7 @@ function AccordionShadowsCP({
                       <Switch
                         colorScheme="teal"
                         isChecked={item.inset}
-                        onChange={(e) => onToggleInset(item.id)}
+                        onChange={() => onToggleInset(item.id)}
                       />
                     </FormControl>
                     <IconButton
