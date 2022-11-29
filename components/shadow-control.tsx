@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { memo } from "react";
 import { useShadows } from "../hooks/use-shadows";
-import { AccordionShadows } from "./accordion";
+import { ShadowsAccordion } from "./shadows-accordion";
 
 function Component() {
   const {
@@ -35,7 +35,7 @@ function Component() {
         </Button>
       </Flex>
       <Box>
-        <AccordionShadows
+        <ShadowsAccordion
           shadows={shadows}
           onToggleActive={handleToggleActive}
           onToggleInset={handleToggleInset}
