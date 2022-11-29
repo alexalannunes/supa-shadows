@@ -1,7 +1,6 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { memo } from "react";
 import { useShadows } from "../hooks/use-shadows";
-import { Shadow } from "../types/shadow";
 import { AccordionShadows } from "./accordion";
 
 function Component() {
