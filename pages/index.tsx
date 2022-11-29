@@ -8,6 +8,8 @@ import { ModalShadows } from "../components/modal";
 import { ShadowControl } from "../components/shadow-control";
 import { ShadowPreview } from "../components/shadow-preview";
 import { ShadowProperties } from "../components/shadow-properties";
+import { Shadow } from "../types";
+import { buildShadow } from "../utils";
 export const shadowBase = {
   id: v4(),
   x: 0,
@@ -26,7 +28,12 @@ export const heightAtom = atom(16);
 export const borderColorAtom = atom("#E2E8F0");
 export const borderRadiusAtom = atom(1);
 export const shadowsAtom = atom([shadowBase]);
-export const shadowStringAtom = atom("");
+export const shadowStringAtom = atom((get) => {
+  return get(shadowsAtom)
+    .filter((i: Shadow) => i.active)
+    .map(buildShadow)
+    .join(",");
+});
 
 const Home: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
