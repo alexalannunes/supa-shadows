@@ -1,13 +1,10 @@
-import { useSetAtom } from "jotai";
 import { useReducerAtom } from "jotai/utils";
-import { useCallback, useEffect } from "react";
-import { shadowsAtom, shadowStringAtom } from "../pages";
+import { useCallback } from "react";
+import { shadowsAtom } from "../pages";
 import { shadowsReducer } from "../store/shadows";
-import { Shadow } from "../types";
-import { buildShadow } from "../utils";
+
 export function useShadows() {
   const [shadows, dispatch] = useReducerAtom(shadowsAtom, shadowsReducer);
-  const updateShadowString = useSetAtom(shadowStringAtom);
 
   const handleAddSahdow = useCallback(() => {
     dispatch({ type: "ADD" });
@@ -68,14 +65,6 @@ export function useShadows() {
     },
     [dispatch]
   );
-  useEffect(() => {
-    const shadowsString = shadows
-      .filter((i: Shadow) => i.active)
-      .map(buildShadow)
-      .join(",");
-
-    updateShadowString(shadowsString);
-  }, [shadows, updateShadowString]);
 
   return {
     shadows,
