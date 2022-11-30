@@ -9,7 +9,6 @@ import { WidthField } from "./width";
 
 export function Component() {
   const [hide] = useMediaQuery("(max-width: 1200px)");
-  console.log(hide);
 
   if (hide) {
     return null;
