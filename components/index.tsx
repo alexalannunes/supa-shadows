@@ -4,4 +4,4 @@ export { ShadowControl } from "./shadow-control";
 export { ShadowPreview } from "./shadow-preview";
 export { ShadowProperties } from "./shadow-properties";
 export { ShadowsAccordion } from "./shadows-accordion";
-export { ShadowAccordionItem } from "./sahdow-accordion-item";
+export { ShadowAccordionItem } from "./shadow-accordion-item";

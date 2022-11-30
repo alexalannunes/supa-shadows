@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { memo, useMemo } from "react";
 import { Shadow } from "../types";
-import { ShadowAccordionItem } from "./sahdow-accordion-item";
+import { ShadowAccordionItem } from "./shadow-accordion-item";
 
 interface Props {
   shadows: Shadow[];
