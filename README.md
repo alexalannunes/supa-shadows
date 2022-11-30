@@ -8,6 +8,7 @@ A box shadow generator :tada:
 * :heavy_check_mark: TypeScript
 * :hammer: Chakra-UI
 * :wrench: Jotai
+* :books: highlight.js
 
 ___
 
