@@ -8,24 +8,35 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Textarea,
+  useToast,
 } from "@chakra-ui/react";
 import { useAtomValue } from "jotai";
 import { useRef } from "react";
 import { shadowStringAtom } from "../pages";
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
+
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
+
 export function ModalShadows({ isOpen, onClose }: Props) {
   const shadowString = useAtomValue(shadowStringAtom);
+  const toast = useToast();
 
-  const ref = useRef<HTMLTextAreaElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   const handleCopy = () => {
     if (ref.current) {
-      ref.current.select();
-      document.execCommand("copy");
+      navigator.clipboard.writeText(ref.current.textContent as string);
+      toast({
+        title: "Copied",
+        colorScheme: "green",
+        position: "top",
+        status: "success",
+        duration: 2000,
+      });
     }
   };
 
@@ -37,13 +48,22 @@ export function ModalShadows({ isOpen, onClose }: Props) {
           <ModalHeader>CSS Code</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Textarea
-              readOnly
-              rows={3}
-              ref={ref}
-              defaultValue={shadowString}
-              fontFamily="monospace"
-            />
+            <pre style={{ whiteSpace: "pre-line" }}>
+              <code
+                className="hljs language-css"
+                ref={ref}
+                dangerouslySetInnerHTML={{
+                  __html: hljs.highlight(
+                    `.element {
+                        box-shadow: ${shadowString}
+                    }`,
+                    {
+                      language: "css",
+                    }
+                  ).value,
+                }}
+              ></code>
+            </pre>
           </ModalBody>
 
           <ModalFooter>
