@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, useMediaQuery, VStack } from "@chakra-ui/react";
 import { memo } from "react";
 import { BackgroundField } from "./background";
 import { BorderColorField } from "./border-color";
@@ -8,6 +8,13 @@ import { HeightField } from "./height";
 import { WidthField } from "./width";
 
 export function Component() {
+  const [hide] = useMediaQuery("(max-width: 1200px)");
+  console.log(hide);
+
+  if (hide) {
+    return null;
+  }
+
   return (
     <Box
       as="section"
