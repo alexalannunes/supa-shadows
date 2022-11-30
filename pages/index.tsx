@@ -3,11 +3,13 @@ import { atom } from "jotai";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { v4 } from "uuid";
-import { Header } from "../components/header";
-import { ModalShadows } from "../components/modal";
-import { ShadowControl } from "../components/shadow-control";
-import { ShadowPreview } from "../components/shadow-preview";
-import { ShadowProperties } from "../components/shadow-properties";
+import {
+  Header,
+  ModalShadows,
+  ShadowControl,
+  ShadowPreview,
+  ShadowProperties,
+} from "../components";
 import { Shadow } from "../types";
 import { buildShadow } from "../utils";
 export const shadowBase = {
