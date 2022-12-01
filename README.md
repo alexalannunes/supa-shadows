@@ -12,6 +12,14 @@ A box shadow generator :tada:
 
 ___
 
-**status**
+### Todo issues :computer:
 
-`beta`
+- [ ] [#9 Mobile responsive design](https://github.com/alexalannunes/supa-shadows/issues/9)
+- [ ] [#8 Add color picker component](https://github.com/alexalannunes/supa-shadows/issues/8)
+- [ ] [#7 Setup testing jest + tesling library](https://github.com/alexalannunes/supa-shadows/issues/7)
+
+**Project**
+
+:fire:
+
+https://github.com/users/alexalannunes/projects/3
