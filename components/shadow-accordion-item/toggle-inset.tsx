@@ -18,6 +18,7 @@ const ToggleInset = memo(
           colorScheme="teal"
           isChecked={inset}
           onChange={() => onToggleInset(id)}
+          data-testid="switch-inset"
         />
       </FormControl>
     );

@@ -18,6 +18,7 @@ const ToggleActive = memo(
           colorScheme="teal"
           isChecked={active}
           onChange={() => onToggleActive(id)}
+          data-testid="switch-active"
         />
       </FormControl>
     );
