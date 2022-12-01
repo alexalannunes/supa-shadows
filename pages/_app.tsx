@@ -1,7 +1,9 @@
+import { ChakraProvider, Flex, Spinner } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
-import { Box, ChakraProvider, Flex, Spinner } from "@chakra-ui/react";
-import "../styles/styles.css";
 import { useEffect, useRef } from "react";
+import "../styles/styles.css";
+
+const isDev = process.env.NODE_ENV === "development";
 
 function BackdropLoading() {
   const loadingRef = useRef<HTMLDivElement>(null);
@@ -15,6 +17,7 @@ function BackdropLoading() {
       }, 500); // in css: transition all .3s linear
     }, 800);
   }, []);
+
   return (
     <Flex
       ref={loadingRef}
@@ -40,7 +43,7 @@ function BackdropLoading() {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
-      <BackdropLoading />
+      {!isDev ? <BackdropLoading /> : null}
       <Component {...pageProps} />
     </ChakraProvider>
   );
