@@ -30,7 +30,12 @@ function Component() {
     >
       <Flex justifyContent="space-between" alignItems="center" p={4}>
         <Heading fontSize="md">Customize Shadows</Heading>
-        <Button colorScheme="teal" size="sm" onClick={handleAddSahdow}>
+        <Button
+          colorScheme="teal"
+          size="sm"
+          onClick={handleAddSahdow}
+          title="add new shadow"
+        >
           Add shadow
         </Button>
       </Flex>
