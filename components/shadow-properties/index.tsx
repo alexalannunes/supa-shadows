@@ -1,11 +1,11 @@
 import { Box, Flex, Heading, useMediaQuery, VStack } from "@chakra-ui/react";
 import { memo } from "react";
-import { BackgroundField } from "./background";
-import { BorderColorField } from "./border-color";
-import { BorderRadiusField } from "./border-radius";
-import { CanvasColorField } from "./canvas-color";
-import { HeightField } from "./height";
-import { WidthField } from "./width";
+import { BackgroundField } from "./background-field";
+import { BorderColorField } from "./border-color-field";
+import { BorderRadiusField } from "./border-radius-field";
+import { CanvasColorField } from "./canvas-color-field";
+import { HeightField } from "./height-field";
+import { WidthField } from "./width-field";
 
 export function Component() {
   const [hide] = useMediaQuery("(max-width: 1200px)");
