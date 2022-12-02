@@ -24,7 +24,7 @@ export const shadowBase = {
 };
 
 export const colorAtom = atom("#EDF2F7");
-export const backgroundAtom = atom("white");
+export const backgroundAtom = atom("#FFFFFF");
 export const widthAtom = atom(16);
 export const heightAtom = atom(16);
 export const borderColorAtom = atom("#E2E8F0");
