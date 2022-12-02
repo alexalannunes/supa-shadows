@@ -20,7 +20,7 @@ export const shadowBase = {
   spread: 0,
   inset: false,
   active: true,
-  color: "rgba(0,0,0,0.1)",
+  color: "#0000001a",
 };
 
 export const colorAtom = atom("#EDF2F7");

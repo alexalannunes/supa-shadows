@@ -1,5 +1,14 @@
-import { FormControl, FormLabel, Input } from "@chakra-ui/react";
+import {
+  FormLabel,
+  Input,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+} from "@chakra-ui/react";
 import { memo } from "react";
+import { HexAlphaColorPicker } from "react-colorful";
 
 const Color = memo(
   ({
@@ -12,14 +21,27 @@ const Color = memo(
     onColor: (id: string, value: string) => void;
   }) => {
     return (
-      <FormControl>
+      <>
         <FormLabel fontWeight="bold">Color</FormLabel>
-        <Input
-          fontFamily="monospace"
-          value={value}
-          onChange={(e) => onColor(id, e.target.value)}
-        />
-      </FormControl>
+        <Popover placement="right">
+          <PopoverTrigger>
+            <Input
+              fontFamily="monospace"
+              value={value}
+              onChange={(e) => onColor(id, e.target.value)}
+            />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverBody>
+              <HexAlphaColorPicker
+                color={value}
+                onChange={(newColor) => onColor(id, newColor)}
+              />
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </>
     );
   }
 );
