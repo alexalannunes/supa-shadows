@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Heading, useMediaQuery } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { memo } from "react";
+import { useMd } from "../hooks/breakpoints";
 import { useShadows } from "../hooks/use-shadows";
 import { ShadowsAccordion } from "./shadows-accordion";
 
@@ -17,9 +18,9 @@ function Component() {
     handleColor,
   } = useShadows();
 
-  const [hide] = useMediaQuery("(max-width: 820px)");
+  const [isMd] = useMd();
 
-  if (hide) {
+  if (!isMd) {
     return null;
   }
 

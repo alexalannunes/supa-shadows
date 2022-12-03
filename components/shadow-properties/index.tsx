@@ -1,5 +1,6 @@
-import { Box, Flex, Heading, useMediaQuery, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, VStack } from "@chakra-ui/react";
 import { memo } from "react";
+import { useXl } from "../../hooks/breakpoints";
 import { BackgroundField } from "./background-field";
 import { BorderColorField } from "./border-color-field";
 import { BorderRadiusField } from "./border-radius-field";
@@ -8,9 +9,9 @@ import { HeightField } from "./height-field";
 import { WidthField } from "./width-field";
 
 export function Component() {
-  const [hide] = useMediaQuery("(max-width: 1200px)");
+  const [isXl] = useXl();
 
-  if (hide) {
+  if (!isXl) {
     return null;
   }
 

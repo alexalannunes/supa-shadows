@@ -1,4 +1,4 @@
-import { Flex, useDisclosure, useMediaQuery } from "@chakra-ui/react";
+import { Flex, useDisclosure } from "@chakra-ui/react";
 import { atom } from "jotai";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -10,6 +10,7 @@ import {
   ShadowPreview,
   ShadowProperties,
 } from "../components";
+import { useMd } from "../hooks/breakpoints";
 import { Shadow } from "../types";
 import { buildShadow } from "../utils";
 export const shadowBase = {
@@ -38,9 +39,9 @@ export const shadowStringAtom = atom((get) => {
 });
 
 function ShadowFooterControl() {
-  const [hide] = useMediaQuery("(min-width: 820px)");
+  const [isMd] = useMd();
 
-  if (hide) {
+  if (isMd) {
     return null;
   }
 
