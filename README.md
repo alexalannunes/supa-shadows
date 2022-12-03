@@ -9,13 +9,13 @@ A box shadow generator :tada:
 * :hammer: Chakra-UI
 * :wrench: Jotai
 * :books: highlight.js
-
+* :heavy_plus_sign: react-colorful
 ___
 
 ### Todo issues :computer:
 
+- [x] [#8 Add color picker component](https://github.com/alexalannunes/supa-shadows/issues/8)
 - [ ] [#9 Mobile responsive design](https://github.com/alexalannunes/supa-shadows/issues/9)
-- [ ] [#8 Add color picker component](https://github.com/alexalannunes/supa-shadows/issues/8)
 - [ ] [#7 Setup testing jest + tesling library](https://github.com/alexalannunes/supa-shadows/issues/7)
 
 **Project**
