@@ -11,13 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { memo } from "react";
 import { Shadow } from "../../types";
-import { BlurRadius } from "./blur-radius";
-import { Color } from "./color";
-import { HorizontalOffset } from "./horizontal-offset";
-import { SpreadRadius } from "./spread-radius";
-import { ToggleActive } from "./toggle-active";
-import { ToggleInset } from "./toggle-inset";
-import { VerticalOffset } from "./vertical-offset";
+import { BlurRadius } from "./blur-radius-field";
+import { Color } from "./color-field";
+import { HorizontalOffset } from "./horizontal-offset-field";
+import { SpreadRadius } from "./spread-radius-field";
+import { ToggleActive } from "./toggle-active-field";
+import { ToggleInset } from "./toggle-inset-field";
+import { VerticalOffset } from "./vertical-offset-field";
 
 interface Props {
   index: number;
