@@ -7,6 +7,7 @@ import {
   useColorMode,
   useToken,
 } from "@chakra-ui/react";
+import { useSm } from "../hooks/breakpoints";
 interface Props {
   onOpen: () => void;
 }
@@ -14,6 +15,7 @@ export function Header({ onOpen }: Props) {
   const { toggleColorMode, colorMode } = useColorMode();
   const colorModeIcon = colorMode === "light" ? <MoonIcon /> : <SunIcon />;
   const [teal400] = useToken("colors", ["teal.400"]);
+  const [isSm] = useSm();
   return (
     <Flex
       px={8}
@@ -40,14 +42,16 @@ export function Header({ onOpen }: Props) {
           />
         </svg>
 
-        <Heading
-          as="h1"
-          _dark={{ color: "teal.200" }}
-          color="teal.500"
-          fontSize="xl"
-        >
-          SupaShadows
-        </Heading>
+        {isSm && (
+          <Heading
+            as="h1"
+            _dark={{ color: "teal.200" }}
+            color="teal.500"
+            fontSize="xl"
+          >
+            SupaShadows
+          </Heading>
+        )}
       </Flex>
       <Flex gap={4} alignItems="center">
         <a
