@@ -25,8 +25,8 @@ export function Component() {
 
   useEffect(() => {
     if (!isMd) {
-      setWidth(10);
-      setHeight(10);
+      setWidth(6);
+      setHeight(6);
       return;
     }
 
@@ -40,7 +40,7 @@ export function Component() {
       flex={1}
       flexShrink={0}
       alignItems={isMd ? "center" : "flex-start"}
-      paddingTop={isMd ? 0 : "3rem"}
+      paddingTop={isMd ? 0 : "2rem"}
       justifyContent="center"
       bg={color}
     >
