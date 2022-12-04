@@ -1,6 +1,7 @@
 import {
   FormLabel,
   Input,
+  PlacementWithLogical,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -14,32 +15,35 @@ interface Props {
   id: string;
   value: string;
   onColor: (id: string, value: string) => void;
+  placement?: PlacementWithLogical;
 }
 
-const Color = memo(({ id, value, onColor }: Props) => {
-  return (
-    <>
-      <FormLabel fontWeight="bold">Color</FormLabel>
-      <Popover placement="right">
-        <PopoverTrigger>
-          <Input
-            fontFamily="monospace"
-            value={value}
-            onChange={(e) => onColor(id, e.target.value)}
-          />
-        </PopoverTrigger>
-        <PopoverContent w="fit-content">
-          <PopoverArrow />
-          <PopoverBody>
-            <HexAlphaColorPicker
-              color={value}
-              onChange={(newColor) => onColor(id, newColor)}
+const ColorField = memo(
+  ({ id, value, onColor, placement = "right" }: Props) => {
+    return (
+      <>
+        <FormLabel fontWeight="bold">Color</FormLabel>
+        <Popover placement={placement}>
+          <PopoverTrigger>
+            <Input
+              fontFamily="monospace"
+              value={value}
+              onChange={(e) => onColor(id, e.target.value)}
             />
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-    </>
-  );
-});
-Color.displayName = "Color";
-export { Color };
+          </PopoverTrigger>
+          <PopoverContent w="fit-content">
+            <PopoverArrow />
+            <PopoverBody>
+              <HexAlphaColorPicker
+                color={value}
+                onChange={(newColor) => onColor(id, newColor)}
+              />
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </>
+    );
+  }
+);
+ColorField.displayName = "ColorField";
+export { ColorField };
