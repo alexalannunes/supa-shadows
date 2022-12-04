@@ -11,13 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { memo } from "react";
 import { Shadow } from "../../types";
-import { BlurRadius } from "./blur-radius-field";
-import { Color } from "./color-field";
-import { HorizontalOffset } from "./horizontal-offset-field";
-import { SpreadRadius } from "./spread-radius-field";
-import { ToggleActive } from "./toggle-active-field";
-import { ToggleInset } from "./toggle-inset-field";
-import { VerticalOffset } from "./vertical-offset-field";
+import { BlurRadiusField } from "./blur-radius-field";
+import { ColorField } from "./color-field";
+import { HorizontalOffsetField } from "./horizontal-offset-field";
+import { SpreadRadiusField } from "./spread-radius-field";
+import { ToggleActiveField } from "./toggle-active-field";
+import { ToggleInsetField } from "./toggle-inset-field";
+import { VerticalOffsetField } from "./vertical-offset-field";
 
 interface Props {
   index: number;
@@ -65,12 +65,12 @@ function ShadowAccordionItemComponent({
             </AccordionButton>
             <AccordionPanel pb={4}>
               <HStack mb={4} spacing={6}>
-                <ToggleActive
+                <ToggleActiveField
                   id={item.id}
                   active={item.active}
                   onToggleActive={onToggleActive}
                 />
-                <ToggleInset
+                <ToggleInsetField
                   id={item.id}
                   inset={item.inset}
                   onToggleInset={onToggleInset}
@@ -88,23 +88,23 @@ function ShadowAccordionItemComponent({
                   disabled={canRemoveShadow}
                 />
               </HStack>
-              <HorizontalOffset
+              <HorizontalOffsetField
                 id={item.id}
                 value={item.x}
                 onHorizontalOffset={onHorizontalOffset}
               />
-              <VerticalOffset
+              <VerticalOffsetField
                 id={item.id}
                 value={item.y}
                 onVerticalOffset={onVerticalOffset}
               />
-              <BlurRadius id={item.id} value={item.blur} onBlur={onBlur} />
-              <SpreadRadius
+              <BlurRadiusField id={item.id} value={item.blur} onBlur={onBlur} />
+              <SpreadRadiusField
                 id={item.id}
                 value={item.spread}
                 onSpread={onSpread}
               />
-              <Color id={item.id} value={item.color} onColor={onColor} />
+              <ColorField id={item.id} value={item.color} onColor={onColor} />
             </AccordionPanel>
           </>
         )}
