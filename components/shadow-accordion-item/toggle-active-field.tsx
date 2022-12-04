@@ -7,7 +7,7 @@ interface Props {
   onToggleActive: (id: string) => void;
 }
 
-const ToggleActive = memo(({ id, active, onToggleActive }: Props) => {
+const ToggleActiveField = memo(({ id, active, onToggleActive }: Props) => {
   return (
     <FormControl w="fit-content" display="flex" alignItems="center">
       <FormLabel mb="0">Active</FormLabel>
@@ -20,5 +20,5 @@ const ToggleActive = memo(({ id, active, onToggleActive }: Props) => {
     </FormControl>
   );
 });
-ToggleActive.displayName = "ToggleActive";
-export { ToggleActive };
+ToggleActiveField.displayName = "ToggleActiveField";
+export { ToggleActiveField };

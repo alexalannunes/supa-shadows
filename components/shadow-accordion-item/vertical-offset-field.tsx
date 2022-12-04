@@ -21,7 +21,7 @@ interface Props {
   onVerticalOffset: (id: string, value: number) => void;
 }
 
-const VerticalOffset = memo(({ id, value, onVerticalOffset }: Props) => {
+const VerticalOffsetField = memo(({ id, value, onVerticalOffset }: Props) => {
   return (
     <FormControl>
       <FormLabel fontWeight="bold">Vertical offset</FormLabel>
@@ -64,6 +64,6 @@ const VerticalOffset = memo(({ id, value, onVerticalOffset }: Props) => {
   );
 });
 
-VerticalOffset.displayName = "VerticalOffset";
+VerticalOffsetField.displayName = "VerticalOffsetField";
 
-export { VerticalOffset };
+export { VerticalOffsetField };

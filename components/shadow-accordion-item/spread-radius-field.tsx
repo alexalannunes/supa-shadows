@@ -21,7 +21,7 @@ interface Props {
   onSpread: (id: string, value: number) => void;
 }
 
-const SpreadRadius = memo(({ id, value, onSpread }: Props) => {
+const SpreadRadiusField = memo(({ id, value, onSpread }: Props) => {
   return (
     <FormControl>
       <FormLabel fontWeight="bold">Spread radius</FormLabel>
@@ -65,5 +65,5 @@ const SpreadRadius = memo(({ id, value, onSpread }: Props) => {
   );
 });
 
-SpreadRadius.displayName = "SpreadRadius";
-export { SpreadRadius };
+SpreadRadiusField.displayName = "SpreadRadiusField";
+export { SpreadRadiusField };

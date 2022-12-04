@@ -7,7 +7,7 @@ interface Props {
   onToggleInset: (id: string) => void;
 }
 
-const ToggleInset = memo(({ id, inset, onToggleInset }: Props) => {
+const ToggleInsetField = memo(({ id, inset, onToggleInset }: Props) => {
   return (
     <FormControl display="flex" alignItems="center">
       <FormLabel mb="0">Inset</FormLabel>
@@ -21,6 +21,6 @@ const ToggleInset = memo(({ id, inset, onToggleInset }: Props) => {
   );
 });
 
-ToggleInset.displayName = "ToggleInset";
+ToggleInsetField.displayName = "ToggleInset";
 
-export { ToggleInset };
+export { ToggleInsetField };

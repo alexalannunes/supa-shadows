@@ -20,7 +20,7 @@ interface Props {
   value: number;
   onBlur: (id: string, value: number) => void;
 }
-const BlurRadius = memo(({ id, value, onBlur }: Props) => {
+const BlurRadiusField = memo(({ id, value, onBlur }: Props) => {
   return (
     <FormControl>
       <FormLabel fontWeight="bold">Blur radius</FormLabel>
@@ -63,5 +63,5 @@ const BlurRadius = memo(({ id, value, onBlur }: Props) => {
   );
 });
 
-BlurRadius.displayName = "BlurRadius";
-export { BlurRadius };
+BlurRadiusField.displayName = "BlurRadiusField";
+export { BlurRadiusField };
