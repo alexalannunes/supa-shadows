@@ -10,7 +10,7 @@ import {
   shadowStringAtom,
   widthAtom,
 } from "../pages";
-import { useMd } from "../hooks/breakpoints";
+import { useMd } from "../hooks/use-breakpoints";
 
 export function Component() {
   const color = useAtomValue(colorAtom);

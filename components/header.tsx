@@ -7,7 +7,7 @@ import {
   useColorMode,
   useToken,
 } from "@chakra-ui/react";
-import { useSm } from "../hooks/breakpoints";
+import { useSm } from "../hooks/use-breakpoints";
 interface Props {
   onOpen: () => void;
 }

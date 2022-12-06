@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { memo } from "react";
-import { useMd } from "../hooks/breakpoints";
+import { useMd } from "../hooks/use-breakpoints";
 import { useShadows } from "../hooks/use-shadows";
 import { ShadowsAccordion } from "./shadows-accordion";
 

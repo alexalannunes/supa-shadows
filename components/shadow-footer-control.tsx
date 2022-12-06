@@ -8,7 +8,7 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import { useMd } from "../hooks/breakpoints";
+import { useMd } from "../hooks/use-breakpoints";
 import { useShadows } from "../hooks/use-shadows";
 import { BlurRadiusField } from "./shadow-accordion-item/blur-radius-field";
 import { ColorField } from "./shadow-accordion-item/color-field";

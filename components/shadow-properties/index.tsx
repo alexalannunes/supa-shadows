@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, VStack } from "@chakra-ui/react";
 import { memo } from "react";
-import { useXl } from "../../hooks/breakpoints";
+import { useXl } from "../../hooks/use-breakpoints";
 import { BackgroundField } from "./background-field";
 import { BorderColorField } from "./border-color-field";
 import { BorderRadiusField } from "./border-radius-field";
