@@ -23,3 +23,12 @@ ___
 :fire:
 
 https://github.com/users/alexalannunes/projects/3
+
+
+**Demo**
+
+![image](https://github.com/alexalannunes/supa-shadows/assets/16847836/ff3163e0-015c-4495-840c-69e41d7237d5)
+
+![image](https://github.com/alexalannunes/supa-shadows/assets/16847836/774ec103-98ea-4c13-8f71-64958e8b4116)
+
+
