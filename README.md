@@ -18,12 +18,6 @@ ___
 - [x] [#9 Mobile responsive design](https://github.com/alexalannunes/supa-shadows/issues/9)
 - [ ] [#7 Setup testing jest + tesling library](https://github.com/alexalannunes/supa-shadows/issues/7)
 
-**Project**
-
-:fire:
-
-https://github.com/users/alexalannunes/projects/3
-
 
 **Demo**
 
