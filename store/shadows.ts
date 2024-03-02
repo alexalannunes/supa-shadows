@@ -5,7 +5,6 @@ export type Action =
   | { type: "ADD" }
   | { type: "REMOVE"; payload: { id: string } }
   | { type: "TOGGLE_ACTIVE"; payload: { id: string } }
-  | { type: "TOGGLE_ACTIVE"; payload: { id: string } }
   | { type: "TOGGLE_INSET"; payload: { id: string } }
   | { type: "UPDATE_Y"; payload: { id: string; value: number } }
   | { type: "UPDATE_X"; payload: { id: string; value: number } }

@@ -15,7 +15,7 @@ ___
 ### Todo issues :computer:
 
 - [x] [#8 Add color picker component](https://github.com/alexalannunes/supa-shadows/issues/8)
-- [ ] [#9 Mobile responsive design](https://github.com/alexalannunes/supa-shadows/issues/9)
+- [x] [#9 Mobile responsive design](https://github.com/alexalannunes/supa-shadows/issues/9)
 - [ ] [#7 Setup testing jest + tesling library](https://github.com/alexalannunes/supa-shadows/issues/7)
 
 **Project**

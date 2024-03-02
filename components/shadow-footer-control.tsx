@@ -15,18 +15,56 @@ import { ColorField } from "./shadow-accordion-item/color-field";
 import { HorizontalOffsetField } from "./shadow-accordion-item/horizontal-offset-field";
 import { SpreadRadiusField } from "./shadow-accordion-item/spread-radius-field";
 import { VerticalOffsetField } from "./shadow-accordion-item/vertical-offset-field";
+import { useRef, useState } from "react";
+
+interface ShadowTabProps {
+  isActive: boolean;
+  counter: number;
+}
+function ShadowTab({ isActive, counter }: ShadowTabProps) {
+  return (
+    <Tab
+      whiteSpace={"nowrap"}
+      _dark={{
+        color: isActive ? "gray.700" : "gray.300",
+      }}
+    >
+      Shadow {counter}
+    </Tab>
+  );
+}
 
 export function ShadowFooterControl() {
   const [isMd] = useMd();
+
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+  // TODO remove this rule
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const tabListRef = useRef<HTMLDivElement>(null!);
+
   const {
     shadows,
-    handleAddSahdow,
+    handleAddShadow,
     handleHorizontalOffset,
     handleVerticalOffset,
     handleBlur,
     handleSpread,
     handleColor,
   } = useShadows();
+
+  const onAddTab = () => {
+    if (
+      tabListRef.current &&
+      tabListRef.current?.scrollWidth > tabListRef.current?.clientWidth
+    ) {
+      setTimeout(() => {
+        tabListRef.current.scrollLeft += 999999;
+      }, 0);
+    }
+    setActiveTabIndex(shadows.length);
+    handleAddShadow();
+  };
 
   if (isMd) {
     return null;
@@ -46,10 +84,19 @@ export function ShadowFooterControl() {
       borderTopRadius="lg"
       direction="column"
     >
-      <Tabs variant="soft-rounded" colorScheme="teal">
-        <TabList>
+      <Tabs
+        variant="soft-rounded"
+        colorScheme="teal"
+        index={activeTabIndex}
+        onChange={setActiveTabIndex}
+      >
+        <TabList overflowX={"auto"} ref={tabListRef}>
           {shadows.map((item, index) => (
-            <Tab key={item.id}>Shadow {index + 1}</Tab>
+            <ShadowTab
+              isActive={index === activeTabIndex}
+              counter={index + 1}
+              key={item.id}
+            />
           ))}
         </TabList>
 
@@ -89,7 +136,7 @@ export function ShadowFooterControl() {
         </TabPanels>
       </Tabs>
       <Flex alignItems="center" justify="center">
-        <Button colorScheme="teal" rounded="full" onClick={handleAddSahdow}>
+        <Button colorScheme="teal" rounded="full" onClick={onAddTab}>
           Add shadow
         </Button>
       </Flex>

@@ -7,7 +7,7 @@ import { ShadowsAccordion } from "./shadows-accordion";
 function Component() {
   const {
     shadows,
-    handleAddSahdow,
+    handleAddShadow,
     handleToggleActive,
     handleToggleInset,
     handleRemove,
@@ -40,7 +40,7 @@ function Component() {
         <Button
           colorScheme="teal"
           size="sm"
-          onClick={handleAddSahdow}
+          onClick={handleAddShadow}
           title="add new shadow"
         >
           Add shadow

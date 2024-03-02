@@ -6,7 +6,7 @@ import { shadowsReducer } from "../store/shadows";
 export function useShadows() {
   const [shadows, dispatch] = useReducerAtom(shadowsAtom, shadowsReducer);
 
-  const handleAddSahdow = useCallback(() => {
+  const handleAddShadow = useCallback(() => {
     dispatch({ type: "ADD" });
   }, [dispatch]);
 
@@ -67,15 +67,15 @@ export function useShadows() {
   );
 
   return {
-    shadows,
-    handleAddSahdow,
+    handleAddShadow,
+    handleBlur,
+    handleColor,
+    handleHorizontalOffset,
+    handleRemove,
+    handleSpread,
     handleToggleActive,
     handleToggleInset,
-    handleRemove,
-    handleHorizontalOffset,
     handleVerticalOffset,
-    handleBlur,
-    handleSpread,
-    handleColor,
+    shadows,
   };
 }
