@@ -58,6 +58,7 @@ export function Header({ onOpen }: Props) {
           href="https://github.com/alexalannunes/supa-shadows"
           target="_blank"
           rel="noreferrer"
+          aria-label="Visit the repository"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

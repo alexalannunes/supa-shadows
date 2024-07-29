@@ -104,7 +104,12 @@ function ShadowAccordionItemComponent({
                 value={item.spread}
                 onSpread={onSpread}
               />
-              <ColorField id={item.id} value={item.color} onColor={onColor} />
+              <ColorField
+                id={item.id}
+                value={item.color}
+                onColor={onColor}
+                placement="top"
+              />
             </AccordionPanel>
           </>
         )}

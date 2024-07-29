@@ -40,7 +40,7 @@ const SpreadRadiusField = memo(({ id, value, onSpread }: Props) => {
             <SliderTrack>
               <SliderFilledTrack bg="transparent" />
             </SliderTrack>
-            <SliderThumb bgColor="teal.400" />
+            <SliderThumb bgColor="teal.400" aria-label="Change spread" />
           </Slider>
         </Flex>
         <Flex alignItems="center" gap={2}>

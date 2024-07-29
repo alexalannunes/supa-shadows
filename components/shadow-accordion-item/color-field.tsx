@@ -1,4 +1,6 @@
 import {
+  Box,
+  FormControl,
   FormLabel,
   Input,
   PlacementWithLogical,
@@ -21,15 +23,17 @@ interface Props {
 const ColorField = memo(
   ({ id, value, onColor, placement = "right" }: Props) => {
     return (
-      <>
+      <FormControl>
         <FormLabel fontWeight="bold">Color</FormLabel>
         <Popover placement={placement}>
           <PopoverTrigger>
-            <Input
-              fontFamily="monospace"
-              value={value}
-              onChange={(e) => onColor(id, e.target.value)}
-            />
+            <Box aria-haspopup="dialog" aria-expanded="false">
+              <Input
+                fontFamily="monospace"
+                value={value}
+                onChange={(e) => onColor(id, e.target.value)}
+              />
+            </Box>
           </PopoverTrigger>
           <PopoverContent w="fit-content">
             <PopoverArrow />
@@ -41,7 +45,7 @@ const ColorField = memo(
             </PopoverBody>
           </PopoverContent>
         </Popover>
-      </>
+      </FormControl>
     );
   }
 );
