@@ -11,9 +11,9 @@ import {
   ShadowProperties,
 } from "../components";
 import { ShadowFooterControl } from "../components/shadow-footer-control";
+import openGraphImageCover from "../public/open-graph-cover.png";
 import { Shadow } from "../types";
 import { buildShadow } from "../utils";
-import openGraphImageCover from "../public/open-graph-cover.png";
 export const shadowBase = {
   id: v4(),
   x: 0,
@@ -81,6 +81,7 @@ const Home: NextPage = () => {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <ModalShadows isOpen={isOpen} onClose={onClose} />
 
       <Flex w="full" direction="column">
