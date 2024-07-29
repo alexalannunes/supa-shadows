@@ -13,6 +13,7 @@ import {
 import { ShadowFooterControl } from "../components/shadow-footer-control";
 import { Shadow } from "../types";
 import { buildShadow } from "../utils";
+import openGraphImageCover from "../public/open-graph-cover.png";
 export const shadowBase = {
   id: v4(),
   x: 0,
@@ -45,10 +46,20 @@ const Home: NextPage = () => {
     <Flex minH="100vh" w="full" direction="column">
       <Head>
         <title>Supa Shadows Generator</title>
-        <meta name="description" content="Supa Shadows Generator" />
+        <meta
+          name="description"
+          content="A box-shadow CSS Generator tool to quickly generate box-shadow CSS declarations."
+        />
+        <meta property="og:title" content="Supa Shadows" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://supa-shadows.vercel.app/" />
+        <meta property="og:image" content={openGraphImageCover.src} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Supa Shadows cover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <ModalShadows isOpen={isOpen} onClose={onClose} />
 
       <Flex w="full" direction="column">
