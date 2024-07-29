@@ -74,6 +74,11 @@ const Home: NextPage = () => {
         />
         <meta name="twitter:image" content={openGraphImageCoverUrl} />
 
+        <meta
+          name="google-site-verification"
+          content="aEdmSv4Liad52ujAs70aLu_5IVpNmPWCcRTuAj34SjQ"
+        />
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ModalShadows isOpen={isOpen} onClose={onClose} />
