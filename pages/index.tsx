@@ -39,6 +39,8 @@ export const shadowStringAtom = atom((get) => {
     .join(",");
 });
 
+const openGraphImageCoverUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${openGraphImageCover.src}`;
+
 const Home: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -53,11 +55,25 @@ const Home: NextPage = () => {
         <meta property="og:title" content="Supa Shadows" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://supa-shadows.vercel.app/" />
-        <meta property="og:image" content={openGraphImageCover.src} />
+        <meta property="og:image" content={openGraphImageCoverUrl} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Supa Shadows cover" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="supa-shadows.vercel.app" />
+        <meta
+          property="twitter:url"
+          content="https://supa-shadows.vercel.app/"
+        />
+        <meta name="twitter:title" content="Supa Shadows" />
+        <meta
+          name="twitter:description"
+          content="A box-shadow CSS Generator tool to quickly generate box-shadow CSS declarations."
+        />
+        <meta name="twitter:image" content={openGraphImageCoverUrl} />
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ModalShadows isOpen={isOpen} onClose={onClose} />
