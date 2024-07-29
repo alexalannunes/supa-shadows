@@ -8,6 +8,11 @@ export function useShadows() {
 
   const handleAddShadow = useCallback(() => {
     dispatch({ type: "ADD" });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).gtag("event", "button_click", {
+      event_name: "Add new shadow",
+    });
   }, [dispatch]);
 
   const handleToggleActive = useCallback(

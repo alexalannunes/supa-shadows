@@ -30,12 +30,18 @@ export function ModalShadows({ isOpen, onClose }: Props) {
   const handleCopy = () => {
     if (ref.current) {
       navigator.clipboard.writeText(ref.current.textContent as string);
+
       toast({
         title: "Copied",
         colorScheme: "green",
         position: "top",
         status: "success",
         duration: 2000,
+      });
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).gtag("event", "button_click", {
+        event_name: "Copy CSS code",
       });
     }
   };
