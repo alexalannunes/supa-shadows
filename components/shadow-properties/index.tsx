@@ -18,7 +18,6 @@ export function Component() {
   return (
     <Box
       as="section"
-      w="sm"
       borderLeft="1px"
       borderLeftColor="gray.300"
       overflowY="auto"

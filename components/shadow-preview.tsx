@@ -38,6 +38,7 @@ export function Component() {
     <Flex
       as="main"
       flex={1}
+      h={"calc(100vh - 64px)"}
       flexShrink={0}
       alignItems={isMd ? "center" : "flex-start"}
       paddingTop={isMd ? 0 : "2rem"}

@@ -27,7 +27,6 @@ function Component() {
   return (
     <Box
       as="section"
-      w="sm"
       borderRight="1px"
       borderRightColor="gray.300"
       overflowY="auto"

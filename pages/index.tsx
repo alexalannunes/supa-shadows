@@ -1,4 +1,4 @@
-import { Flex, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, useDisclosure } from "@chakra-ui/react";
 import { atom } from "jotai";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -14,6 +14,7 @@ import { ShadowFooterControl } from "../components/shadow-footer-control";
 import openGraphImageCover from "../public/open-graph-cover.png";
 import { Shadow } from "../types";
 import { buildShadow } from "../utils";
+
 export const shadowBase = {
   id: v4(),
   x: 0,
@@ -87,9 +88,15 @@ const Home: NextPage = () => {
       <Flex w="full" direction="column">
         <Header onOpen={onOpen} />
         <Flex minH="calc(100vh - 64px)">
-          <ShadowControl />
-          <ShadowPreview />
-          <ShadowProperties />
+          <Box width={"24rem"}>
+            <ShadowControl />
+          </Box>
+          <Box flex={1}>
+            <ShadowPreview />
+          </Box>
+          <Box width={"24rem"}>
+            <ShadowProperties />
+          </Box>
         </Flex>
         <ShadowFooterControl />
       </Flex>
