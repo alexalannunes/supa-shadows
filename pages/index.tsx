@@ -1,11 +1,10 @@
-import { Box, Flex, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { atom } from "jotai";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { v4 } from "uuid";
 import {
   Header,
-  ModalShadows,
   ShadowControl,
   ShadowPreview,
   ShadowProperties,
@@ -43,8 +42,6 @@ export const shadowStringAtom = atom((get) => {
 const openGraphImageCoverUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${openGraphImageCover.src}`;
 
 const Home: NextPage = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Flex minH="100vh" w="full" direction="column">
       <Head>
@@ -83,10 +80,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <ModalShadows isOpen={isOpen} onClose={onClose} />
-
       <Flex w="full" direction="column">
-        <Header onOpen={onOpen} />
+        <Header />
         <Flex minH="calc(100vh - 64px)">
           <Box width={"24rem"}>
             <ShadowControl />
