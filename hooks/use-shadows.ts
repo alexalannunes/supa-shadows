@@ -20,15 +20,13 @@ export function useShadows() {
 
     skipUrlUpdate.current = true;
 
+    // if (process.env.NODE_ENV === "production") {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if (process.env.NODE_ENV === "production") {
-      (window as any).gtag("event", "button_click", {
-        event_name: "Add new shadow",
-      });
-    }
+    (window as any).gtag("event", "button_click", {
+      event_name: "Add new shadow",
+    });
+    // }
   }, [dispatch]);
-
-  console.log(router.query);
 
   const handleToggleActive = useCallback(
     (id: string) => {
@@ -105,6 +103,11 @@ export function useShadows() {
       }
     }
   }, [router.isReady, router.query.shadow, setShadows]);
+
+  // useEffect(() => {
+  //   // generate only active shadows
+  //   console.log(base64.encode(JSON.stringify(shadows.filter((a) => a.active))));
+  // }, [shadows]);
 
   // maybe use useRef to track when shadows was changed.
   // Whether changed by url or changed by user.

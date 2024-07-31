@@ -1,10 +1,41 @@
-import { Button, Container, Flex, Heading } from "@chakra-ui/react";
-import openGraphImageCover from "../public/open-graph-cover.png";
+import { Box, Container, Flex, Heading } from "@chakra-ui/react";
 import Head from "next/head";
 import { Header } from "../components";
+import openGraphImageCover from "../public/open-graph-cover.png";
+import { Shadow } from "../types";
+import { base64, buildShadow } from "../utils";
 import Link from "next/link";
 
 const openGraphImageCoverUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${openGraphImageCover.src}`;
+
+const examples = [
+  {
+    id: 1,
+    shadow:
+      "W3siaWQiOiJkY2MxY2Q1NS02YzQ0LTRmMDQtYjM5ZC01ZDg1MjdiOTc1ZmQiLCJ4IjowLCJ5IjoxOCwiYmx1ciI6NDMsInNwcmVhZCI6NCwiaW5zZXQiOmZhbHNlLCJhY3RpdmUiOnRydWUsImNvbG9yIjoiIzAwMDAwMDFhIn0seyJpZCI6ImRmMjdjOTEyLTI2MjUtNDYyNS1hMTQ4LWFiMGZkYjE4OTQ4OCIsIngiOjAsInkiOjEwLCJibHVyIjozMiwic3ByZWFkIjowLCJpbnNldCI6ZmFsc2UsImFjdGl2ZSI6dHJ1ZSwiY29sb3IiOiIjMDAwMDAwMWEifV0=",
+  },
+];
+
+function ExampleCard({ shadow }: { shadow: string }) {
+  const shadowParsed = JSON.parse(base64.decode(shadow)) as Shadow[];
+
+  const shadowString = shadowParsed
+    .filter((i: Shadow) => i.active)
+    .map(buildShadow)
+    .join(",");
+
+  return (
+    <Box
+      rounded={"lg"}
+      h="40"
+      bg={"white"}
+      w="40"
+      sx={{
+        boxShadow: shadowString,
+      }}
+    />
+  );
+}
 
 export default function ExamplesPage() {
   return (
@@ -54,16 +85,23 @@ export default function ExamplesPage() {
         <Container>
           <Flex minH="calc(100vh - 64px)" flexDirection={"column"} gap={4}>
             <Heading>Coming soon</Heading>
-            <Button
-              as={Link}
-              href={{
-                pathname: "/",
-                search:
-                  "shadow=W3siaWQiOiIwMjVlNjNkNi04Y2FlLTRiZDQtOTliYy1hYmNiMzU4MTlkOWQiLCJ4IjowLCJ5IjoxMCwiYmx1ciI6OCwic3ByZWFkIjowLCJpbnNldCI6ZmFsc2UsImFjdGl2ZSI6dHJ1ZSwiY29sb3IiOiIjMDAwMDAwMWEifSx7ImlkIjoiNTU1OWY5NDQtNjRkNy00MmNjLTk5YTEtN2Y3ODJjMGJlZTgxIiwieCI6MCwieSI6MTAsImJsdXIiOjgsInNwcmVhZCI6MCwiaW5zZXQiOmZhbHNlLCJhY3RpdmUiOnRydWUsImNvbG9yIjoiIzAwMDAwMDFhIn0seyJpZCI6IjBmNTY3MTM3LWE3NjctNGY4Yi1hNTM5LWNiZDgwMzRlMTg2OSIsIngiOjAsInkiOjEwLCJibHVyIjo4LCJzcHJlYWQiOjAsImluc2V0IjpmYWxzZSwiYWN0aXZlIjp0cnVlLCJjb2xvciI6IiMwMDAwMDAxYSJ9XQ==",
-              }}
-            >
-              Check this example demo
-            </Button>
+
+            <Flex gap={"4"}>
+              {examples.map((e) => (
+                <Link
+                  key={e.id}
+                  href={{
+                    pathname: "/",
+                    query: {
+                      shadow: e.shadow,
+                      utm_source: "examples",
+                    },
+                  }}
+                >
+                  <ExampleCard shadow={e.shadow} />
+                </Link>
+              ))}
+            </Flex>
           </Flex>
         </Container>
       </Flex>
