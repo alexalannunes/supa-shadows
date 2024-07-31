@@ -1,19 +1,34 @@
 import { useReducerAtom } from "jotai/utils";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { shadowsAtom } from "../pages";
 import { shadowsReducer } from "../store/shadows";
+import { Shadow } from "../types";
+import { NextRouter, useRouter } from "next/router";
+import { base64 } from "../utils";
 
 export function useShadows() {
+  const router = useRouter() as NextRouter & {
+    query: {
+      shadow?: string;
+    };
+  };
+
   const [shadows, dispatch] = useReducerAtom(shadowsAtom, shadowsReducer);
 
   const handleAddShadow = useCallback(() => {
     dispatch({ type: "ADD" });
 
+    skipUrlUpdate.current = true;
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).gtag("event", "button_click", {
-      event_name: "Add new shadow",
-    });
+    if (process.env.NODE_ENV === "production") {
+      (window as any).gtag("event", "button_click", {
+        event_name: "Add new shadow",
+      });
+    }
   }, [dispatch]);
+
+  console.log(router.query);
 
   const handleToggleActive = useCallback(
     (id: string) => {
@@ -70,6 +85,30 @@ export function useShadows() {
     },
     [dispatch]
   );
+
+  const skipUrlUpdate = useRef(false);
+
+  const setShadows = useCallback(
+    (newShadows: Shadow[]) => {
+      dispatch({ type: "SET", payload: newShadows });
+    },
+    [dispatch]
+  );
+
+  // read shadow param
+  useEffect(() => {
+    if (router.isReady && router.query?.shadow) {
+      const shadowsParams = JSON.parse(base64.decode(router.query.shadow));
+
+      if (shadowsParams.length) {
+        setShadows(shadowsParams);
+      }
+    }
+  }, [router.isReady, router.query.shadow, setShadows]);
+
+  // maybe use useRef to track when shadows was changed.
+  // Whether changed by url or changed by user.
+  // if changed by user, update url. If changed by url, does not call the second effect to update url again
 
   return {
     handleAddShadow,

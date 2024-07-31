@@ -1,4 +1,5 @@
 import { v4 } from "uuid";
+import { Shadow } from "../types";
 import { shadowBase } from "../pages";
 
 export type Action =
@@ -10,9 +11,13 @@ export type Action =
   | { type: "UPDATE_X"; payload: { id: string; value: number } }
   | { type: "UPDATE_BLUR"; payload: { id: string; value: number } }
   | { type: "UPDATE_SPREAD"; payload: { id: string; value: number } }
-  | { type: "UPDATE_COLOR"; payload: { id: string; value: string } };
+  | { type: "UPDATE_COLOR"; payload: { id: string; value: string } }
+  | { type: "SET"; payload: Shadow[] };
 
 export function shadowsReducer(initialState = [shadowBase], action: Action) {
+  if (action.type === "SET") {
+    return action.payload;
+  }
   if (action.type === "ADD") {
     return [...initialState, { ...shadowBase, id: v4() }];
   }
