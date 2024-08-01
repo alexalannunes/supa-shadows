@@ -18,6 +18,7 @@ ___
 * Add infinite shadows
 * Edit element
 * Sharable link
+* Copy CSS code
 * Preserve shadows after refreh
 * Examples (in progress)
 
