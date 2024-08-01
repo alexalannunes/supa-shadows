@@ -5,6 +5,7 @@ import { shadowsReducer } from "../store/shadows";
 import { Shadow } from "../types";
 import { NextRouter, useRouter } from "next/router";
 import { base64 } from "../utils";
+import { quickDebounce } from "../utils/quick-debounce";
 
 export function useShadows() {
   const router = useRouter() as NextRouter & {
@@ -17,8 +18,6 @@ export function useShadows() {
 
   const handleAddShadow = useCallback(() => {
     dispatch({ type: "ADD" });
-
-    skipUrlUpdate.current = true;
 
     // if (process.env.NODE_ENV === "production") {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -84,7 +83,7 @@ export function useShadows() {
     [dispatch]
   );
 
-  const skipUrlUpdate = useRef(false);
+  const skipUrlUpdate = useRef(true);
 
   const setShadows = useCallback(
     (newShadows: Shadow[]) => {
@@ -95,23 +94,39 @@ export function useShadows() {
 
   // read shadow param
   useEffect(() => {
-    if (router.isReady && router.query?.shadow) {
+    if (skipUrlUpdate.current && router.isReady && router.query?.shadow) {
       const shadowsParams = JSON.parse(base64.decode(router.query.shadow));
 
       if (shadowsParams.length) {
         setShadows(shadowsParams);
+        skipUrlUpdate.current = false;
       }
+
+      return;
+    }
+    // is no shadow query is present, so can update url on initial state
+    if (skipUrlUpdate.current && router.isReady) {
+      skipUrlUpdate.current = false;
     }
   }, [router.isReady, router.query.shadow, setShadows]);
 
-  // useEffect(() => {
-  //   // generate only active shadows
-  //   console.log(base64.encode(JSON.stringify(shadows.filter((a) => a.active))));
-  // }, [shadows]);
+  useEffect(() => {
+    if (!skipUrlUpdate.current) {
+      quickDebounce(() => {
+        router.replace({
+          pathname: "/",
+          query: {
+            shadow: base64.encode(
+              // generate only active shadows
+              JSON.stringify(shadows.filter((a) => a.active))
+            ),
+          },
+        });
+      });
+    }
 
-  // maybe use useRef to track when shadows was changed.
-  // Whether changed by url or changed by user.
-  // if changed by user, update url. If changed by url, does not call the second effect to update url again
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shadows]);
 
   return {
     handleAddShadow,
