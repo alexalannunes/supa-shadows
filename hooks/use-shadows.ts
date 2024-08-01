@@ -21,9 +21,7 @@ export function useShadows() {
 
     // if (process.env.NODE_ENV === "production") {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // (window as any).gtag("event", "add_new_shadow", {
-    //   event_name: "Add new Shadow",
-    // });
+    (window as any).gtag("event", "add_new_shadow");
     // }
   }, [dispatch]);
 

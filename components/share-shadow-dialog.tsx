@@ -36,9 +36,7 @@ export function ShareDialog({ isOpen, onClose }: Props) {
 
       // if (process.env.NODE_ENV === "production") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      // (window as any).gtag("event", "button_click", {
-      //   event_name: "Copy shadow URL",
-      // });
+      (window as any).gtag("event", "copy_shadow_url");
       // }
     }
   };
