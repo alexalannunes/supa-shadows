@@ -29,6 +29,10 @@ export function Header() {
 
   const isExamplePage = router.pathname === "/examples";
 
+  const handleGtagGithub = () => {
+    (window as any).gtag("event", "github_repo");
+  };
+
   return (
     <Flex
       px={8}
@@ -90,6 +94,7 @@ export function Header() {
           rel="noreferrer"
           aria-label="Visit the repository"
           style={{ display: "flex" }}
+          onClick={handleGtagGithub}
         >
           <Icon as={FaGithub} boxSize={6} />
         </Link>
