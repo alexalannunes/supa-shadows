@@ -1,4 +1,10 @@
-import { ChakraProvider, Flex, Spinner } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  defineStyleConfig,
+  extendTheme,
+  Flex,
+  Spinner,
+} from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import { useEffect, useRef } from "react";
 import "../styles/styles.css";
@@ -8,7 +14,7 @@ const isDev = process.env.NODE_ENV === "development";
 function BackdropLoading() {
   const loadingRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // refact this code :)
+    // do refactor of this code :)
     // https://react-spring.dev/basics#basics
     setTimeout(() => {
       loadingRef.current?.classList.add("fade-out");
@@ -40,9 +46,29 @@ function BackdropLoading() {
   );
 }
 
+const baseInputTheme = defineStyleConfig({
+  sizes: {
+    sm: {
+      field: {
+        borderRadius: "md",
+      },
+    },
+  },
+  defaultProps: {
+    size: "sm",
+  },
+});
+
+const theme = extendTheme({
+  components: {
+    Input: baseInputTheme,
+    NumberInput: baseInputTheme,
+  },
+});
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       {!isDev ? <BackdropLoading /> : null}
       <Component {...pageProps} />
     </ChakraProvider>

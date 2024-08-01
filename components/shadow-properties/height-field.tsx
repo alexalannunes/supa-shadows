@@ -29,7 +29,6 @@ export function HeightField() {
             max={50}
             min={10}
             step={1}
-            aria-label="slider-ex-1"
             colorScheme="teal"
             value={height}
             onChange={(value) => setHeight(value)}
@@ -47,7 +46,6 @@ export function HeightField() {
             min={10}
             step={1}
             value={height}
-            defaultValue={3}
             onChange={(value) => setHeight(Number(value))}
           >
             <NumberInputField />

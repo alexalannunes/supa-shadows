@@ -28,7 +28,6 @@ export function WidthField() {
             max={50}
             min={10}
             step={1}
-            aria-label="slider-ex-1"
             colorScheme="teal"
             value={width}
             onChange={(value) => setWidth(value)}

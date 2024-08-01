@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
-import { memo, useEffect } from "react";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
+import { memo } from "react";
 import {
   backgroundAtom,
   borderColorAtom,
@@ -10,29 +10,15 @@ import {
   shadowStringAtom,
   widthAtom,
 } from "../pages";
-import { useMd } from "../hooks/use-breakpoints";
 
 export function Component() {
   const color = useAtomValue(colorAtom);
   const background = useAtomValue(backgroundAtom);
-  const [width, setWidth] = useAtom(widthAtom);
-  const [height, setHeight] = useAtom(heightAtom);
+  const width = useAtomValue(widthAtom);
+  const height = useAtomValue(heightAtom);
   const borderColor = useAtomValue(borderColorAtom);
   const borderRadius = useAtomValue(borderRadiusAtom);
   const shadowString = useAtomValue(shadowStringAtom);
-
-  const [isMd] = useMd();
-
-  useEffect(() => {
-    if (!isMd) {
-      setWidth(6);
-      setHeight(6);
-      return;
-    }
-
-    setWidth(16);
-    setHeight(16);
-  }, [isMd, setWidth, setHeight]);
 
   return (
     <Flex
@@ -40,8 +26,7 @@ export function Component() {
       flex={1}
       h={"calc(100vh - 64px)"}
       flexShrink={0}
-      alignItems={isMd ? "center" : "flex-start"}
-      paddingTop={isMd ? 0 : "2rem"}
+      alignItems={"center"}
       justifyContent="center"
       bg={color}
     >

@@ -1,6 +1,5 @@
 import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { memo } from "react";
-import { useMd } from "../hooks/use-breakpoints";
 import { useShadows } from "../hooks/use-shadows";
 import { ShadowsAccordion } from "./shadows-accordion";
 
@@ -17,12 +16,6 @@ function Component() {
     handleSpread,
     handleColor,
   } = useShadows();
-
-  const [isMd] = useMd();
-
-  if (!isMd) {
-    return null;
-  }
 
   return (
     <Box

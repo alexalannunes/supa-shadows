@@ -1,4 +1,3 @@
-import { CloseIcon } from "@chakra-ui/icons";
 import {
   Accordion,
   AccordionButton,
@@ -18,6 +17,7 @@ import { SpreadRadiusField } from "./spread-radius-field";
 import { ToggleActiveField } from "./toggle-active-field";
 import { ToggleInsetField } from "./toggle-inset-field";
 import { VerticalOffsetField } from "./vertical-offset-field";
+import { MdClose } from "react-icons/md";
 
 interface Props {
   index: number;
@@ -84,7 +84,7 @@ function ShadowAccordionItemComponent({
                   _hover={{
                     bg: "red.300",
                   }}
-                  icon={<CloseIcon w="3" h="3" />}
+                  icon={<MdClose />}
                   disabled={canRemoveShadow}
                 />
               </HStack>

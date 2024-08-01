@@ -1,5 +1,5 @@
 import { Button, useDisclosure } from "@chakra-ui/react";
-import { ModalShadows } from "./modal";
+import { CopyCodeDialog } from "./copy-code-dialog";
 
 export function CopyCodeButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -10,7 +10,7 @@ export function CopyCodeButton() {
         Show code
       </Button>
 
-      <ModalShadows isOpen={isOpen} onClose={onClose} />
+      <CopyCodeDialog isOpen={isOpen} onClose={onClose} />
     </>
   );
 }

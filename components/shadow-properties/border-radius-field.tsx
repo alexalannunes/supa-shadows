@@ -29,7 +29,6 @@ export function BorderRadiusField() {
             max={20}
             step={1}
             min={0}
-            aria-label="slider-ex-1"
             colorScheme="teal"
             value={borderRadius}
             onChange={(value) => setBorderRadius(value)}
@@ -44,11 +43,13 @@ export function BorderRadiusField() {
           <NumberInput
             w={20}
             max={50}
-            min={10}
+            min={1}
             step={1}
             value={borderRadius}
-            defaultValue={3}
-            onChange={(e) => setBorderRadius(Number(e))}
+            defaultValue={1}
+            onChange={(e) => {
+              setBorderRadius(Number(e));
+            }}
           >
             <NumberInputField />
             <NumberInputStepper>

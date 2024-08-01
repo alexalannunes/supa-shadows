@@ -1,4 +1,3 @@
-import { CopyIcon } from "@chakra-ui/icons";
 import {
   Button,
   Modal,
@@ -10,26 +9,22 @@ import {
   ModalOverlay,
   useToast,
 } from "@chakra-ui/react";
-import { useAtomValue } from "jotai";
-import { useRef } from "react";
-import { shadowStringAtom } from "../pages";
-import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
+import { MdCopyAll } from "react-icons/md";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export function ModalShadows({ isOpen, onClose }: Props) {
-  const shadowString = useAtomValue(shadowStringAtom);
+export function ShareDialog({ isOpen, onClose }: Props) {
   const toast = useToast();
 
-  const ref = useRef<HTMLElement>(null);
+  const isClient = typeof window !== "undefined";
 
   const handleCopy = () => {
-    if (ref.current) {
-      navigator.clipboard.writeText(ref.current.textContent as string);
+    if (isClient) {
+      navigator.clipboard.writeText(location.href);
 
       toast({
         title: "Copied",
@@ -42,7 +37,7 @@ export function ModalShadows({ isOpen, onClose }: Props) {
       // if (process.env.NODE_ENV === "production") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (window as any).gtag("event", "button_click", {
-        event_name: "Copy CSS code",
+        event_name: "Copy shadow URL",
       });
       // }
     }
@@ -53,24 +48,11 @@ export function ModalShadows({ isOpen, onClose }: Props) {
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>CSS Code</ModalHeader>
+          <ModalHeader>Copy URL Code</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <pre style={{ whiteSpace: "pre-line" }}>
-              <code
-                className="hljs language-css"
-                ref={ref}
-                dangerouslySetInnerHTML={{
-                  __html: hljs.highlight(
-                    `.element {
-                        box-shadow: ${shadowString}
-                    }`,
-                    {
-                      language: "css",
-                    }
-                  ).value,
-                }}
-              ></code>
+              <code>{isClient ? location.href : "Loading..."}</code>
             </pre>
           </ModalBody>
 
@@ -80,7 +62,7 @@ export function ModalShadows({ isOpen, onClose }: Props) {
             </Button>
             <Button
               colorScheme="blue"
-              leftIcon={<CopyIcon />}
+              leftIcon={<MdCopyAll />}
               onClick={handleCopy}
             >
               Copy

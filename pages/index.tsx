@@ -9,7 +9,6 @@ import {
   ShadowPreview,
   ShadowProperties,
 } from "../components";
-import { ShadowFooterControl } from "../components/shadow-footer-control";
 import openGraphImageCover from "../public/open-graph-cover.png";
 import { Shadow } from "../types";
 import { buildShadow } from "../utils";
@@ -93,7 +92,6 @@ const Home: NextPage = () => {
             <ShadowProperties />
           </Box>
         </Flex>
-        <ShadowFooterControl />
       </Flex>
     </Flex>
   );

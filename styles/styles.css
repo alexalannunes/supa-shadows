@@ -11,12 +11,7 @@
 [data-theme="dark"] .custom-scrollbar--color-mode::-webkit-scrollbar-thumb {
   background-color: var(--chakra-colors-gray-500);
 }
-.supa-shadows__header svg {
-  fill: var(--chakra-colors-gray-800);
-}
-[data-theme="dark"] .supa-shadows__header svg {
-  fill: var(--chakra-colors-gray-100);
-}
+
 .fade-out {
   transition: all 0.3s linear;
   opacity: 0;

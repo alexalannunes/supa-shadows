@@ -1,7 +1,9 @@
 export { Header } from "./header";
-export { ModalShadows } from "./modal";
+export { CopyCodeDialog } from "./copy-code-dialog";
 export { ShadowControl } from "./shadow-control";
 export { ShadowPreview } from "./shadow-preview";
 export { ShadowProperties } from "./shadow-properties";
 export { ShadowsAccordion } from "./shadows-accordion";
 export { ShadowAccordionItem } from "./shadow-accordion-item";
+export { ShareDialog } from "./share-shadow-dialog";
+export { ShareShadowButton } from "./share-button";
