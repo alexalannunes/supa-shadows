@@ -13,6 +13,7 @@ export function ShareShadowButton() {
         variant={"ghost"}
         onClick={() => onOpen()}
         leftIcon={<MdShare />}
+        fontWeight={"bold"}
       >
         Share
       </Button>
