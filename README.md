@@ -18,7 +18,7 @@ ___
 * Add infinite shadows
 * Edit element
 * Sharable link
-* Preserve state after refreh
+* Preserve shadows after refreh
 * Examples (in progress)
 
 ___
