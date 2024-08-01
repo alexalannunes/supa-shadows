@@ -12,10 +12,21 @@ A box shadow generator :tada:
 * :heavy_plus_sign: react-colorful
 ___
 
+
+### Made With
+
+* Add infinite shadows
+* Edit element
+* Sharable link
+* Preserve state after refreh
+* Examples (in progress)
+
+___
+
 ### Todo issues :computer:
 
 - [x] [#8 Add color picker component](https://github.com/alexalannunes/supa-shadows/issues/8)
-- [x] [#9 Mobile responsive design](https://github.com/alexalannunes/supa-shadows/issues/9)
+- [ ] [#9 Mobile responsive design](https://github.com/alexalannunes/supa-shadows/issues/9)
 - [ ] [#7 Setup testing jest + tesling library](https://github.com/alexalannunes/supa-shadows/issues/7)
 
 
