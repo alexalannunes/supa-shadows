@@ -13,7 +13,7 @@ A box shadow generator :tada:
 ___
 
 
-### Made With
+### Features
 
 * Add infinite shadows
 * Edit element
