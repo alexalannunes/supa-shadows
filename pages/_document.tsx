@@ -3,7 +3,10 @@ import Script from "next/script";
 
 export default function Document() {
   return (
-    <Html lang="en" style={{ colorScheme: "dark" }} data-theme="dark">
+    // start with user preferences (keep in cookie)
+    //  style={{ colorScheme: "dark" }} data-theme="dark"
+    // https://github.com/xeoneux/next-dark-mode
+    <Html lang="en">
       <Head />
       <body>
         <Main />
