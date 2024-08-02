@@ -1,6 +1,6 @@
 import { useReducerAtom } from "jotai/utils";
 import { useCallback, useEffect, useRef } from "react";
-import { shadowsAtom } from "../pages";
+import { shadowBase, shadowsAtom } from "../pages";
 import { shadowsReducer } from "../store/shadows";
 import { Shadow } from "../types";
 import { NextRouter, useRouter } from "next/router";
@@ -101,6 +101,9 @@ export function useShadows() {
       }
 
       return;
+    }
+    if (router.isReady && !router.query?.shadow) {
+      setShadows([shadowBase]);
     }
     // is no shadow query is present, so can update url on initial state
     if (skipUrlUpdate.current && router.isReady) {
