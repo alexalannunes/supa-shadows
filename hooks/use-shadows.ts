@@ -117,6 +117,7 @@ export function useShadows() {
         router.replace({
           pathname: "/",
           query: {
+            ...router.query,
             shadow: base64.encode(
               // generate only active shadows
               JSON.stringify(shadows.filter((a) => a.active))
