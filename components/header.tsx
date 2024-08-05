@@ -30,6 +30,7 @@ export function Header() {
   const isExamplePage = router.pathname === "/examples";
 
   const handleGtagGithub = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (window as any).gtag("event", "github_repo");
   };
 
