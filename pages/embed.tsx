@@ -22,16 +22,16 @@ export default function EmbedPage({ shadow }: PageProps) {
       <Flex
         as="main"
         flex={1}
-        h={"calc(100vh - 64px)"}
+        minH={"100vh"}
         flexShrink={0}
         alignItems={"center"}
         justifyContent="center"
         bg="white"
       >
         <Box
-          w={300}
-          h={300}
-          rounded={"3xl"}
+          w={"20%"}
+          sx={{ aspectRatio: "1/1" }}
+          rounded={"md"}
           bg={"white"}
           boxShadow={shadowsString}
         />
@@ -46,6 +46,9 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async ({
   return {
     props: {
       shadow: query?.shadow ? String(query.shadow) : "",
+      // pass box props
+      // w=
+      // h=
     },
   };
 };
