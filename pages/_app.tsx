@@ -1,10 +1,4 @@
-import {
-  ChakraProvider,
-  defineStyleConfig,
-  extendTheme,
-  Flex,
-  Spinner,
-} from "@chakra-ui/react";
+import { ChakraProvider, Flex, Spinner, theme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import { useEffect, useRef } from "react";
 import "../styles/styles.css";
@@ -45,26 +39,6 @@ function BackdropLoading() {
     </Flex>
   );
 }
-
-const baseInputTheme = defineStyleConfig({
-  sizes: {
-    sm: {
-      field: {
-        borderRadius: "md",
-      },
-    },
-  },
-  defaultProps: {
-    size: "sm",
-  },
-});
-
-const theme = extendTheme({
-  components: {
-    Input: baseInputTheme,
-    NumberInput: baseInputTheme,
-  },
-});
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
