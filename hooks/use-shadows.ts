@@ -93,7 +93,9 @@ export function useShadows() {
   // read shadow param
   useEffect(() => {
     if (skipUrlUpdate.current && router.isReady && router.query?.shadow) {
-      const shadowsParams = JSON.parse(base64.decode(router.query.shadow));
+      const shadowsParams = JSON.parse(
+        base64.decode(decodeURIComponent(router.query.shadow))
+      );
 
       if (shadowsParams.length) {
         setShadows(shadowsParams);

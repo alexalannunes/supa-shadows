@@ -1,4 +1,4 @@
-import { Box, Container, Flex, Heading } from "@chakra-ui/react";
+import { Box, Container, Flex, Grid, Heading, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import { Header } from "../components";
 import openGraphImageCover from "../public/open-graph-cover.png";
@@ -10,14 +10,23 @@ const openGraphImageCoverUrl = `${process.env.NEXT_PUBLIC_DOMAIN}${openGraphImag
 
 const examples = [
   {
-    id: 1,
     shadow:
       "W3siaWQiOiJkY2MxY2Q1NS02YzQ0LTRmMDQtYjM5ZC01ZDg1MjdiOTc1ZmQiLCJ4IjowLCJ5IjoxOCwiYmx1ciI6NDMsInNwcmVhZCI6NCwiaW5zZXQiOmZhbHNlLCJhY3RpdmUiOnRydWUsImNvbG9yIjoiIzAwMDAwMDFhIn0seyJpZCI6ImRmMjdjOTEyLTI2MjUtNDYyNS1hMTQ4LWFiMGZkYjE4OTQ4OCIsIngiOjAsInkiOjEwLCJibHVyIjozMiwic3ByZWFkIjowLCJpbnNldCI6ZmFsc2UsImFjdGl2ZSI6dHJ1ZSwiY29sb3IiOiIjMDAwMDAwMWEifV0=",
+  },
+  {
+    shadow:
+      "W3siaWQiOiJkY2MxY2Q1NS02YzQ0LTRmMDQtYjM5ZC01ZDg1MjdiOTc1ZmQiLCJ4IjowLCJ5IjoxOCwiYmx1ciI6NDMsInNwcmVhZCI6NCwiaW5zZXQiOmZhbHNlLCJhY3RpdmUiOnRydWUsImNvbG9yIjoiIzAwMDAwMDFhIn0seyJpZCI6ImRmMjdjOTEyLTI2MjUtNDYyNS1hMTQ4LWFiMGZkYjE4OTQ4OCIsIngiOjAsInkiOjEwLCJibHVyIjo4Miwic3ByZWFkIjozMywiaW5zZXQiOmZhbHNlLCJhY3RpdmUiOnRydWUsImNvbG9yIjoiIzAwMDAwMDFhIn1d",
+  },
+  {
+    shadow:
+      "W3siaWQiOiI1Mzg0NGEwMS05NjBmLTQ2MDUtYTAwOS1mZjQxOTk5ZDhmMDgiLCJ4IjowLCJ5IjoxMCwiYmx1ciI6NjIsInNwcmVhZCI6MjIsImluc2V0IjpmYWxzZSwiYWN0aXZlIjp0cnVlLCJjb2xvciI6IiNkMTJmMmYxYSJ9XQ%3D%3D",
   },
 ];
 
 function ExampleCard({ shadow }: { shadow: string }) {
-  const shadowParsed = JSON.parse(base64.decode(shadow)) as Shadow[];
+  const shadowParsed = JSON.parse(
+    base64.decode(decodeURIComponent(shadow))
+  ) as Shadow[];
 
   const shadowString = shadowParsed
     .filter((i: Shadow) => i.active)
@@ -29,7 +38,6 @@ function ExampleCard({ shadow }: { shadow: string }) {
       rounded={"lg"}
       h="40"
       bg={"white"}
-      w="40"
       sx={{
         boxShadow: shadowString,
       }}
@@ -82,26 +90,40 @@ export default function ExamplesPage() {
       <Flex w="full" direction="column">
         <Header />
 
-        <Container>
-          <Flex minH="calc(100vh - 64px)" flexDirection={"column"} gap={4}>
-            <Heading>Coming soon</Heading>
+        <Container maxW={"container.lg"}>
+          <Flex minH="calc(100vh - 64px)" flexDirection={"column"} pt={10}>
+            <Heading fontSize={"2xl"} display={"flex"} gap={2}>
+              <Text
+                color={"teal.500"}
+                _dark={{
+                  color: "teal.300",
+                }}
+              >
+                box-shadows
+              </Text>{" "}
+              Examples
+            </Heading>
 
-            <Flex gap={"4"}>
-              {examples.map((e) => (
+            <Grid
+              templateColumns={"repeat(auto-fill, minmax(260px, 1fr))"}
+              gap={12}
+              pt={10}
+            >
+              {examples.map((item) => (
                 <Link
-                  key={e.id}
+                  key={item.shadow}
                   href={{
                     pathname: "/",
                     query: {
-                      shadow: e.shadow,
+                      shadow: item.shadow,
                       utm_source: "examples",
                     },
                   }}
                 >
-                  <ExampleCard shadow={e.shadow} />
+                  <ExampleCard shadow={item.shadow} />
                 </Link>
               ))}
-            </Flex>
+            </Grid>
           </Flex>
         </Container>
       </Flex>
