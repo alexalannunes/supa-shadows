@@ -77,7 +77,7 @@ export function CopyCodeDialog({ isOpen, onClose }: Props) {
               Close
             </Button>
             <Button
-              colorScheme="blue"
+              colorScheme="teal"
               leftIcon={<MdCopyAll />}
               onClick={handleCopy}
             >

@@ -2,7 +2,6 @@ import {
   Box,
   BoxProps,
   Button,
-  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,6 +11,7 @@ import {
   ModalOverlay,
   Spinner,
   Stack,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import "highlight.js/styles/github.css";
@@ -40,8 +40,11 @@ function CodeBox({ children, ...props }: BoxProps) {
 
 function getEmbedCode() {
   const { origin, search } = location;
+  const urlSearch = new URLSearchParams(search);
+  urlSearch.set("utm_source", "embed_code");
+  const finalUrlSearch = urlSearch.toString();
   const pathname = "embed";
-  const url = `${origin}/${pathname}${search}`;
+  const url = `${origin}/${pathname}?${finalUrlSearch}`;
   return `<iframe
                       height="200px"
                       width="200px"
@@ -85,18 +88,24 @@ export function ShareDialog({ isOpen, onClose }: Props) {
           <ModalCloseButton />
           <ModalBody overflowY={"auto"} maxH="500px">
             <Stack spacing={4}>
-              <CodeBox>
+              <CodeBox fontSize={"sm"}>
                 <pre style={{ whiteSpace: "pre-line" }}>
                   <code>{isClient ? location.href : "Loading..."}</code>
                 </pre>
               </CodeBox>
 
-              <Heading fontWeight={"normal"} size={"md"}>
-                Embed box-shadow
-              </Heading>
-              <CodeBox mt={2}>
-                {isClient ? <code>{getEmbedCode()}</code> : <Spinner />}
-              </CodeBox>
+              <Box mt={4}>
+                <Text
+                  color={"gray.900"}
+                  _dark={{ color: "white" }}
+                  fontWeight={"semibold"}
+                >
+                  Embed box-shadow
+                </Text>
+                <CodeBox mt={2} fontSize={"sm"}>
+                  {isClient ? <code>{getEmbedCode()}</code> : <Spinner />}
+                </CodeBox>
+              </Box>
             </Stack>
           </ModalBody>
 
