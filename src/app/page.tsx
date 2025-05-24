@@ -124,33 +124,88 @@ function BoxValuesField({ ...props }: BoxValuesFieldProps) {
   return <ShadowFieldBase min={20} max={800} {...props} />;
 }
 
+interface Shadows {
+  // active
+  // inset
+  x: number;
+  y: number;
+  blur: number;
+  spread: number;
+  color: string;
+}
+
+interface Box {
+  width: number;
+  height: number;
+  radius: number;
+  background: string;
+  border: string;
+  canvasColor: string;
+}
+
 export default function Home() {
+  const [shadows, setShadows] = useState<Shadows[]>([
+    {
+      x: 0,
+      y: 1,
+      blur: 9,
+      spread: 0,
+      color: "#323999",
+    },
+  ]);
+  const [box, setBox] = useState<Box>({
+    width: 56,
+    height: 56,
+    radius: 10,
+    background: "#ffffff",
+    border: "#e5e5e5",
+    canvasColor: "#f8f8f8",
+  });
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="grid grid-cols-[25%_1fr_25%] flex-1">
-        <div className="space-y-0">
+        <div className="space-y-0 overflow-y-auto h-[calc(100vh-var(--header-height))]">
           <div className="py-2 px-4 flex justify-between gap-2 items-center border-b border-border h-13">
             <h2 className="font-semibold">Customize Shadows</h2>
-            <Button variant="outline">
+            <Button
+              variant="outline"
+              onClick={() =>
+                setShadows((prev) => [
+                  ...prev,
+                  {
+                    x: 0,
+                    y: 1,
+                    blur: 9,
+                    spread: 0,
+                    color: "#323999",
+                  },
+                ])
+              }
+            >
               <Plus />
               Add shadow
             </Button>
           </div>
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="hover:bg-muted px-4 border-b border-border rounded-none font-semibold">
-                Shadow 1
-              </AccordionTrigger>
-              <AccordionContent className="p-4 space-y-4 animate-fade-in">
-                <ShadowValuesField value={32} label="Horizontal offset" />
-                <ShadowValuesField label="Vertical offset" />
-              </AccordionContent>
-            </AccordionItem>
+          <Accordion type="multiple">
+            {shadows.map((_, index) => (
+              <AccordionItem value={`item-${index}`} key={index}>
+                <AccordionTrigger className="hover:bg-muted px-4 border-b border-border rounded-none font-bold">
+                  Shadow {index + 1}
+                </AccordionTrigger>
+                <AccordionContent className="p-4 space-y-4 animate-fade-in pl-4 ml-4 border-dashed border-l-2 border-border">
+                  <ShadowValuesField value={32} label="Horizontal offset" />
+                  <ShadowValuesField label="Vertical offset" />
+                  <ShadowValuesField label="Blur radius" />
+                  <ShadowValuesField label="Spread radius" />
+                  <BoxColorsField label="Color" />
+                </AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
         </div>
-        <div className="flex items-center justify-center border-x border-border">
-          <div className="size-52 bg-white shadow" />
+        <div className="flex items-center justify-center border-x border-border bg-muted">
+          <div className="size-52 bg-white shadow rounded-md" />
         </div>
         <div className="space-y-0">
           <div className="py-2 px-4 flex justify-between gap-2 items-center border-b border-border h-13">
