@@ -24,10 +24,12 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+      <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <NuqsAdapter>{children}</NuqsAdapter>
         </ThemeProvider>
