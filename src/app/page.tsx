@@ -1,103 +1,171 @@
-import Image from "next/image";
+"use client"; // remove this
+
+import { Header } from "@/components/header";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { Plus } from "lucide-react";
+import { ComponentProps, useId, useState } from "react";
+
+// note: add onChange in all interfaces
+interface ShadowFieldBase extends ComponentProps<"div"> {
+  label: string;
+  max?: number;
+  min?: number;
+  step?: number;
+  value?: number;
+  name?: string;
+}
+
+interface BoxColorsField extends ComponentProps<"div"> {
+  label: string;
+  name?: string;
+}
+
+type ShadowValuesFieldProps = ShadowFieldBase;
+type BoxValuesFieldProps = ShadowFieldBase;
+
+function BoxColorsField({ label }: BoxColorsField) {
+  const [value, set] = useState("ffffff");
+
+  const fieldId = useId();
+  return (
+    <div className="space-y-3">
+      <Label htmlFor={fieldId} className="font-semibold">
+        {label}
+      </Label>
+      <div className="flex items-center gap-4">
+        <input
+          type="color"
+          className="size-8 input-color"
+          value={`#${value}`}
+          onChange={(e) => set(e.target.value.replace("#", ""))}
+        />
+        <Input
+          value={`#${value}`}
+          id={fieldId}
+          type="text"
+          maxLength={7}
+          className="uppercase"
+          onChange={(e) => {
+            const HEX = "0123456789ABCDEF";
+            const value = e.target.value.replace("#", "");
+            const lastChar = value[value.length - 1];
+            const isValid = HEX.includes(lastChar);
+            if (isValid) {
+              set(value);
+            } else {
+              set(value.slice(0, -1));
+            }
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+// fix input when has 0 value
+function ShadowFieldBase({ label, max, min, step = 1 }: ShadowFieldBase) {
+  const [value, set] = useState<number | undefined>(0);
+
+  const fieldId = useId();
+  const inputProps = { max, min, step };
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={fieldId} className="font-semibold">
+        {label}
+      </Label>
+      <div className="flex gap-4 items-center">
+        <Slider
+          {...inputProps}
+          value={[value || min || 0]}
+          onValueChange={(e) => set(e[0])}
+        />
+        <Input
+          value={value?.toString() || ""}
+          id={fieldId}
+          type="number"
+          className="w-24"
+          {...inputProps}
+          onChange={(e) => {
+            if (e.target.value === "") {
+              set(undefined);
+              return;
+            }
+
+            const value = parseInt(e.target.value);
+            if (value < (min || 0)) {
+              set(min);
+            } else if (value > (max || 100)) {
+              set(max);
+            } else {
+              set(value);
+            }
+          }}
+        />
+        <span className="text-slate-500">px</span>
+      </div>
+    </div>
+  );
+}
+
+function ShadowValuesField({ ...props }: ShadowValuesFieldProps) {
+  return <ShadowFieldBase min={-100} max={100} {...props} />;
+}
+
+function BoxValuesField({ ...props }: BoxValuesFieldProps) {
+  return <ShadowFieldBase min={20} max={800} {...props} />;
+}
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="grid grid-cols-[25%_1fr_25%] flex-1">
+        <div className="space-y-0">
+          <div className="py-2 px-4 flex justify-between gap-2 items-center border-b border-border h-13">
+            <h2 className="font-semibold">Customize Shadows</h2>
+            <Button variant="outline">
+              <Plus />
+              Add shadow
+            </Button>
+          </div>
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger className="hover:bg-muted px-4 border-b border-border rounded-none font-semibold">
+                Shadow 1
+              </AccordionTrigger>
+              <AccordionContent className="p-4 space-y-4 animate-fade-in">
+                <ShadowValuesField value={32} label="Horizontal offset" />
+                <ShadowValuesField label="Vertical offset" />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+        <div className="flex items-center justify-center border-x border-border">
+          <div className="size-52 bg-white shadow" />
+        </div>
+        <div className="space-y-0">
+          <div className="py-2 px-4 flex justify-between gap-2 items-center border-b border-border h-13">
+            <h2 className="font-semibold">Box Properties</h2>
+          </div>
+          <div className="px-4 mt-4 space-y-5">
+            <BoxColorsField label="Canvas color" />
+            <BoxColorsField label="Background color" />
+            <BoxColorsField label="Border color" />
+            <BoxValuesField label="Width" min={56} />
+            <BoxValuesField label="Height" min={56} />
+            <BoxValuesField label="Border radius" min={0} max={500} />
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
