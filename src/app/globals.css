@@ -16,6 +16,7 @@
 
 @theme inline {
   --animate-fade-in: fadeIn 0.3s ease-in;
+  --spacing-header-height: var(--header-height);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -56,6 +57,7 @@
 }
 
 :root {
+  --header-height: 3.5rem;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
