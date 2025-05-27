@@ -7,11 +7,14 @@ export function Header() {
   return (
     <header className="border-b border-border px-4">
       <div className="h-header-height justify-between flex items-center">
-        <Button variant="outline" size="icon" asChild>
-          <Link href="/">
-            <Home />
-          </Link>
-        </Button>
+        <div className="flex gap-3 items-center">
+          <Button variant="outline" size="icon" asChild>
+            <Link href="/">
+              <Home />
+            </Link>
+          </Button>
+          <h1 className="font-bold font-mono text-teal-500">supa-shadows</h1>
+        </div>
 
         <div className="flex gap-3 items-center">
           <Button>
