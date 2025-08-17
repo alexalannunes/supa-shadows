@@ -23,7 +23,7 @@ export function CodeBlock(props: Props) {
     }
 
     highlight();
-  }, [props.children, props.lang]);
+  }, [props.children, props.lang, shikiTheme]);
 
   return (
     <div

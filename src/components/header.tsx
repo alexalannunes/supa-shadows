@@ -1,4 +1,4 @@
-import { Code, Github, Home } from "lucide-react";
+import { Github, Home } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
