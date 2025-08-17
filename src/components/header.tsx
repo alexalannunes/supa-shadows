@@ -2,6 +2,7 @@ import { Code, Github, Home } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
+import { GetCodeButton } from "./get-code-button";
 
 export function Header() {
   return (
@@ -17,10 +18,7 @@ export function Header() {
         </div>
 
         <div className="flex gap-3 items-center">
-          <Button>
-            <Code />
-            Show Code
-          </Button>
+          <GetCodeButton />
           <Button variant="outline" size="icon" asChild>
             <Link
               href="https://github.com/alexalannunes/supa-shadows"
