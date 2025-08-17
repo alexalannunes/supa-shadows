@@ -24,6 +24,8 @@ export function ShadowPropsPanel() {
     parseAsJson(shadowSchema.parse).withDefault(DEFAULT_SHADOWS)
   );
 
+  // todo: add a way to open the panel when is created
+
   // maybe add a debounce here
   const handleShadowValuesChange = useCallback(
     (
