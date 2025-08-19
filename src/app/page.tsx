@@ -1,5 +1,3 @@
-"use client";
-
 import { BoxPropsPanel } from "@/components/box-props-panel";
 import { BoxShadowPreviewPanel } from "@/components/box-shadow-preview-panel";
 import { Header } from "@/components/header";
