@@ -16,13 +16,15 @@ import { shadowSchema } from "@/schemas";
 import { Shadows } from "@/types";
 import { Plus, X } from "lucide-react";
 import { parseAsJson, useQueryState } from "nuqs";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 export function ShadowPropsPanel() {
   const [shadows, setShadows] = useQueryState<Shadows[]>(
     "shadows",
     parseAsJson(shadowSchema.parse).withDefault(DEFAULT_SHADOWS)
   );
+
+  const [openAccordions, setOpenAccordions] = useState<string[]>(["shadow-0"]);
 
   // todo: add a way to open the panel when is created
 
@@ -56,7 +58,8 @@ export function ShadowPropsPanel() {
 
   const handleAdd = useCallback(() => {
     setShadows((prev) => [...prev, DEFAULT_SHADOW]);
-  }, [setShadows]);
+    setOpenAccordions((prev) => [...prev, `shadow-${shadows.length}`]);
+  }, [setShadows, shadows.length]);
 
   return (
     <div className="space-y-0 overflow-y-auto h-[calc(100vh-var(--header-height))]">
@@ -67,8 +70,12 @@ export function ShadowPropsPanel() {
           Add shadow
         </Button>
       </div>
-      {/* create other component and just pass simple props : memo component */}
-      <Accordion type="multiple" defaultValue={["shadow-0"]}>
+      <Accordion
+        type="multiple"
+        defaultValue={["shadow-0"]}
+        value={openAccordions}
+        onValueChange={setOpenAccordions}
+      >
         {shadows.map((shadow, index) => (
           <AccordionItem value={`shadow-${index}`} key={index}>
             <AccordionTrigger className="hover:bg-muted px-4 border-b border-border rounded-none font-bold">
