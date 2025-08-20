@@ -1,4 +1,5 @@
 "use client";
+
 import { Code } from "lucide-react";
 import { Button } from "./ui/button";
 import {
@@ -12,7 +13,7 @@ import {
 import { parseAsJson, useQueryState } from "nuqs";
 import { shadowSchema } from "@/schemas";
 import { DEFAULT_SHADOWS } from "@/constants/default-values";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { CodeBlock } from "./highlight-syntax";
 
 export function GetCodeButton() {
@@ -59,7 +60,7 @@ export function GetCodeButton() {
   }, []);
 
   return (
-    <>
+    <Suspense>
       <Dialog>
         <DialogTrigger asChild>
           <Button>
@@ -81,6 +82,6 @@ export function GetCodeButton() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </>
+    </Suspense>
   );
 }

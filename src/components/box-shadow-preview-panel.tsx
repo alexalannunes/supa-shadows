@@ -4,7 +4,7 @@ import { DEFAULT_BOX, DEFAULT_SHADOWS } from "@/constants/default-values";
 import { boxSchema, shadowSchema } from "@/schemas";
 import { Box, Shadows } from "@/types";
 import { parseAsJson, useQueryState } from "nuqs";
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 
 export function BoxShadowPreviewPanel() {
   const [shadows] = useQueryState<Shadows[]>(
@@ -49,12 +49,14 @@ export function BoxShadowPreviewPanel() {
   );
 
   return (
-    <div
-      className="flex items-center justify-center border-x border-border bg-muted"
-      style={canvasStyle}
-    >
-      <div className="size-52 bg-white shadow rounded-md" style={boxStyle} />
-    </div>
+    <Suspense>
+      <div
+        className="flex items-center justify-center border-x border-border bg-muted"
+        style={canvasStyle}
+      >
+        <div className="size-52 bg-white shadow rounded-md" style={boxStyle} />
+      </div>
+    </Suspense>
   );
 }
 BoxShadowPreviewPanel.displayName = "BoxShadowPreviewPanel";
